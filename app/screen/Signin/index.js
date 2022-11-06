@@ -31,7 +31,7 @@ function  Signin({ navigation }) {
     return(
         
         <KeyboardView>
-        <LinearGradient colors={['#220A41', '#371480', '#220A41']}>
+        <LinearGradient colors={['#16293E', '#1D1E32']}>
         <Container>
             
             <Image

@@ -20,7 +20,7 @@ const Drawer = createDrawerNavigator()
 
 function HubScreen( navigation ){
     return(
-        <Container style={{flex:1,backgroundColor:'#18171F'}}>
+        <Container style={{flex:1,backgroundColor:'#16293E', }}>
                 <Tab.Navigator
                     screenOptions={{
                         tabBarShowLabel: false,
@@ -30,8 +30,8 @@ function HubScreen( navigation ){
                             margin: -20,
                             padding: 0,
                             position: 'absolute',
-                            backgroundColor: '#0F0F13',
-                            color: '#0F0F13',
+                            backgroundColor: '#16293E',
+                            color: '#FFFFFF',
                         },
                         tabBarInactiveTintColor: '#fff',
                         tabBarActiveTintColor: 'purple'

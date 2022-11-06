@@ -6,7 +6,13 @@ export const Container = styled.SafeAreaView`
 
 export const Title = styled.Text`
     color: #FFF;
-    font-size: 36px;
+    font-size: 30px;
+    font-weight: 700;
+`  
+
+export const IconTitle = styled.Text`
+    color: #A4A4A4;
+    font-size: 14px;
     font-weight: 700;
 `  
 
