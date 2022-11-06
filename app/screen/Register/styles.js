@@ -1,14 +1,24 @@
 import styled from 'styled-components/native';
 
 //to tentando usar o "<View></View>" pra colocar os icones mas quando eu coloco n vai, se souber resolver me fala prf --vini
+// Problema resolvido
+
+
+export const KeyboardView = styled.KeyboardAvoidingView`
+    background-color: #25252D;
+    flex: 1; 
+    align-items: center;
+    justify-content: center;
+`
+
 export const Container = styled.View`
     flex: 1;
-    padding: 20px;
     justify-content: center;
     align-items: center;
     padding-bottom: 10px;
     width: 100%;
-    background-color: #1F1437; 
+    padding: 10px;
+    margin: 40px;
     
 `
 
