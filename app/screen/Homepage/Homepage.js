@@ -195,13 +195,6 @@ function Homepage({ navigation }){
                         </TouchableOpacity>
                         <IconTitle>NFT</IconTitle>
                         </View>
-
-                        <View style={{alignItems: 'center', justifyContent: 'center',flexDirection: 'column', marginRight: 10}}>
-                        <TouchableOpacity style={{ alignItems: 'center', justifyContent: 'center',width: 42, height: 39, backgroundColor: '#3B3B3B', borderRadius: 60, borderColor: '#7D4192', border: 1, borderStyle: 'solid' }}>
-                            <Feather name="hash" size={20} color="#fff" />
-                        </TouchableOpacity>
-                        <IconTitle>NFT</IconTitle>
-                        </View>
                     </View>
                 </View>
                     
