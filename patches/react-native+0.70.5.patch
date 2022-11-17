@@ -1,11 +1,3 @@
-diff --git a/node_modules/react-native/ReactAndroid/src/main/jni/first-party/fbjni/.gitignore b/node_modules/react-native/ReactAndroid/src/main/jni/first-party/fbjni/.npmignore
-similarity index 100%
-rename from node_modules/react-native/ReactAndroid/src/main/jni/first-party/fbjni/.gitignore
-rename to node_modules/react-native/ReactAndroid/src/main/jni/first-party/fbjni/.npmignore
-diff --git a/node_modules/react-native/ReactCommon/hermes/inspector/tools/msggen/.gitignore b/node_modules/react-native/ReactCommon/hermes/inspector/tools/msggen/.npmignore
-similarity index 100%
-rename from node_modules/react-native/ReactCommon/hermes/inspector/tools/msggen/.gitignore
-rename to node_modules/react-native/ReactCommon/hermes/inspector/tools/msggen/.npmignore
 diff --git a/node_modules/react-native/index.js b/node_modules/react-native/index.js
 index d59ba34..8023167 100644
 --- a/node_modules/react-native/index.js
