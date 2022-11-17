@@ -17,8 +17,7 @@ import { View,
     SeeAll,
     Image,
     StyleSheet,
-    TouchableOpacity,
-    IconTitle
+    TouchableOpacity
  }  from './styles'
  import Icon from 'react-native-vector-icons/FontAwesome';
  import Feather from 'react-native-vector-icons/Feather'
@@ -27,7 +26,6 @@ import { View,
   import Pagination from 'react-native-snap-carousel';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {LinearGradient} from 'expo-linear-gradient'
 import { NavigationContainer } from '@react-navigation/native';
 import ProfileScreen from '../ProfileScreen/ProfileScreen';
 import Signin from '../Signin/Signin';
@@ -41,43 +39,46 @@ const Drawer = createDrawerNavigator();
 
 const trendsData = [
     {   
-        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658104537124924/mano.webp'
+        title: 'Trending Now',
+        image: 'https://images.ctfassets.net/b4k16c7lw5ut/jOc1IyE2cWic48QMS1mKb/24de5fb94d45b4fc9d0247a293298c31/Blog_thumbnails_-_2022-02-03T111636.748.png?w=1920&h=1080&q=50&fm=webp'
     },
     {   
-        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658104537124924/mano.webp'
+        title: 'Trending Nunca',
+        image: 'https://images.ctfassets.net/b4k16c7lw5ut/jOc1IyE2cWic48QMS1mKb/24de5fb94d45b4fc9d0247a293298c31/Blog_thumbnails_-_2022-02-03T111636.748.png?w=1920&h=1080&q=50&fm=webp'
     },
     {   
-        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658104537124924/mano.webp'
+        title: 'Trending Now',
+        image: 'https://images.ctfassets.net/b4k16c7lw5ut/jOc1IyE2cWic48QMS1mKb/24de5fb94d45b4fc9d0247a293298c31/Blog_thumbnails_-_2022-02-03T111636.748.png?w=1920&h=1080&q=50&fm=webp'
     }
 ]
 
-const animesData = [
+const musicsData = [
     {
-        title: 'Trending Anime',
-        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658653542154290/juju.jpg'
+        title: 'Hot Music',
+        image: 'https://cdn.discordapp.com/attachments/963977573241602138/963977687804833882/harry_styles.jpg'
     },
     {
-        title: 'Trending Anime',
-        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658653542154290/juju.jpg'
+        title: 'Hot Music',
+        image: 'https://cdn.discordapp.com/attachments/963977573241602138/963977687452495882/artworks-NTWumskIAtzxndKO-yz1ryA-t500x500.jpg'
     },
     {
-        title: 'Trending Anime',
-        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658653542154290/juju.jpg'
+        title: 'Hot Music',
+        image: 'https://cdn.discordapp.com/attachments/963977573241602138/963977687804833882/harry_styles.jpg'
     }
 ]
 
 const moviesData = [
     {
-        title: 'Trending Movies',
-        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658438856724511/eternos.jpg'
+        title: 'Hot Movies',
+        image: 'https://cdn.discordapp.com/attachments/963977573241602138/963979691683893268/batman.webp'
     },
     {
-        title: 'Trending Movies',
-        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658438856724511/eternos.jpg'
+        tile: 'Secrets',
+        image: 'https://pbs.twimg.com/media/FMsKCLpVEAA7Y81?format=jpg&name=4096x4096'
     },
     {
         title: 'Hot Movies',
-        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658438856724511/eternos.jpg'
+        image: 'https://cdn.discordapp.com/attachments/963977573241602138/963979691683893268/batman.webp'
     }
 ];
 
@@ -101,15 +102,16 @@ function Homepage({ navigation }){
     return (
 
         
-        <Container style={{flex:1,backgroundColor:'#16293E', }}>
-            
+        <Container style={{flex:1,backgroundColor:'#18171F'}}>
             <ScrollView>
-            
-                <View style={{flexDirection:'row',justifyContent:'space-between', marginBottom:20,alignItems:'center',}}>
-                <View style={{flexDirection:'column', display:'flex',}}>
-                <SubTitle style={{marginBottom: -10, marginRight: 90}}>Welcome back</SubTitle>
-                <Title>Mancon M.</Title>
-                </View>
+                <View style={{flexDirection:'row',justifyContent:'space-between', marginBottom:20,alignItems:'center'}}>
+                <Hamburger>
+                    <ImageBackground
+                    source={require('../../assets/logo.png')}
+                    style={{width:55, height:45}}
+                    imageStyle={{borderRadius: 10}}
+                    />
+                </Hamburger>
                 <TouchableOpacity onPress={() => navigation.navigate('ProfileScreen')}>
                     <ImageBackground 
                         source={require('../../assets/Lindo2.png')}
@@ -119,140 +121,88 @@ function Homepage({ navigation }){
                 </TouchableOpacity>
                 </View>
 
-
-                <View>
-
+                <View
+                style={{
+                    flexDirection: 'row',
+                    borderColor: '#373543',
+                    borderWidth: 1,
+                    borderRadius: 8,
+                    paddingHorizontal: 10,
+                    paddingVertical: 8,
+                    marginTop: 10,
+                    backgroundColor: '#373543',
+                    alignItems:'center'
+                }}
+                >   
+                    <Feather name="search" size={20} color="#C6C6C6" style={{marginRight: 5}} />
+                    <Input placeholder="Search" placeholderTextColor="#fff"/>
                 </View>
 
                 <View
                 style={{
                     marginVertical: 15,
-                    marginBottom: 10, 
                     flexDirection: 'row',
                     justifyContent: 'space-between',
                 }}
                 >
-                    <Text style={{color:'white', fontFamily: 'Montserrat_500Medium', fontSize:20}}>Last News</Text>
+                    <Text style={{color:'white', fontFamily: 'Poppins_500Medium', fontSize:20}}>Trends</Text>
+                    <SeeAll>
+                    <Text style={{color:'purple', fontFamily: 'Poppins_500Medium', fontSize:16, textDecorationLine: 'underline'}}>See All</Text>
+                    </SeeAll>
                 </View>
 
-                <Image
-                    source={require('../../assets/mano.png')}
-                    style={{width: 338, height: 188, borderRadius: 20}}
+                <Carousel 
+                    data={trendsData}
+                    renderItem={renderItem.bind(this)}
+                    sliderWidth={300}
+                    itemWidth={200}
+                    useScrollView={true}
                 />
 
-                <View style={{marginTop: 50,}}>
-                    <Title>Your Trendings</Title>
-                    <View
-                    style={{
-                        flexDirection: 'row',
-                        borderColor: '#7D4192',
-                        borderWidth: 1,
-                        borderRadius: 24,
-                        paddingHorizontal: 10,
-                        paddingVertical: 8,
-                        marginTop: 10,
-                        backgroundColor: '#373543',
-                        alignItems:'center',
-                    }}
-                    >   
-                        <Input placeholder="Search" placeholderTextColor="#fff"/>
-                        <Feather name="search" size={20} color="#C6C6C6" style={{marginRight: 5}} />
-                    </View> 
-
-                    <View style={{marginTop: 5, flexDirection:'row', marginLeft: 10}}>
-                        <View style={{alignItems: 'center', justifyContent: 'center',flexDirection: 'column', marginRight: 10}}>
-                        <TouchableOpacity style={{ alignItems: 'center', justifyContent: 'center',width: 42, height: 39, backgroundColor: '#3B3B3B', borderRadius: 60, borderColor: '#7D4192', border: 1, borderStyle: 'solid' }}>
-                            <Feather name="plus" size={20} color="#fff" />
-                        </TouchableOpacity>
-                        <IconTitle>More</IconTitle>
-                        </View>
-
-                    
-                        <View style={{alignItems: 'center', justifyContent: 'center',flexDirection: 'column', marginRight: 10}}>
-                        <TouchableOpacity style={{ alignItems: 'center', justifyContent: 'center',width: 42, height: 39, backgroundColor: '#3B3B3B', borderRadius: 60, borderColor: '#7D4192', border: 1, borderStyle: 'solid' }}>
-                            <Feather name="hash" size={20} color="#fff" />
-                        </TouchableOpacity>
-                        <IconTitle>process.env.ROOT_PATH_DJANGO+process.env.HASTAG('nome')</IconTitle>
-                        </View>
-
-                        <View style={{alignItems: 'center', justifyContent: 'center',flexDirection: 'column', marginRight: 10}}>
-                        <TouchableOpacity style={{ alignItems: 'center', justifyContent: 'center',width: 42, height: 39, backgroundColor: '#3B3B3B', borderRadius: 60, borderColor: '#7D4192', border: 1, borderStyle: 'solid' }}>
-                            <Feather name="hash" size={20} color="#fff" />
-                        </TouchableOpacity>
-                        <IconTitle>NFT</IconTitle>
-                        </View>
-                        
-                        <View style={{alignItems: 'center', justifyContent: 'center',flexDirection: 'column', marginRight: 10}}>
-                        <TouchableOpacity style={{ alignItems: 'center', justifyContent: 'center',width: 42, height: 39, backgroundColor: '#3B3B3B', borderRadius: 60, borderColor: '#7D4192', border: 1, borderStyle: 'solid' }}>
-                            <Feather name="hash" size={20} color="#fff" />
-                        </TouchableOpacity>
-                        <IconTitle>NFT</IconTitle>
-                        </View>
-
-                        <View style={{alignItems: 'center', justifyContent: 'center',flexDirection: 'column', marginRight: 10}}>
-                        <TouchableOpacity style={{ alignItems: 'center', justifyContent: 'center',width: 42, height: 39, backgroundColor: '#3B3B3B', borderRadius: 60, borderColor: '#7D4192', border: 1, borderStyle: 'solid' }}>
-                            <Feather name="hash" size={20} color="#fff" />
-                        </TouchableOpacity>
-                        <IconTitle>NFT</IconTitle>
-                        </View>
-                    </View>
-                </View>
-                    
-                <View style={{marginTop: 30}}>
-
-                    <View
-                    style={{
-                        marginVertical: 15,
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                    }}
-                    >
-                        <Image 
-                    source={require('../../assets/Fire.png')}
-                    style={{width: 30, height: 30, marginRight: -60}}
-                    />
-                        <Text style={{color:'white', fontFamily: 'Montserrat_500Medium', fontSize:16}}>Trending Movies</Text>
-                        <SeeAll>
-                        <Text style={{color:'purple', fontFamily: 'Montserrat_500Medium', fontSize:16, textDecorationLine: 'underline'}}>See All</Text>
-                        </SeeAll>
-                    </View>
-
-                    <Carousel 
-                        data={moviesData}
-                        renderItem={renderItem.bind(this)}
-                        sliderWidth={400}
-                        itemWidth={150}
-                        useScrollView={true}
-                    />
-                </View>
-
-                <View style={{marginTop: 30, marginBottom: 200}}>
-                    <View
+                <View
                 style={{
                     marginVertical: 15,
                     flexDirection: 'row',
                     justifyContent: 'space-between',
                 }}
                 >
-                    <Image 
-                    source={require('../../assets/Fire.png')}
-                    style={{width: 30, height: 30, marginRight: -60}}
-                    />
-                    <Text style={{color:'white', fontFamily: 'Montserrat_500Medium', fontSize:16}}>Trending Anime</Text>
+                    <Text style={{color:'white', fontFamily: 'Poppins_500Medium', fontSize:20}}>Musics</Text>
                     <SeeAll>
-                    <Text style={{color:'purple', fontFamily: 'Montserrat_500Medium', fontSize:16, textDecorationLine: 'underline'}}>See All</Text>
+                    <Text style={{color:'purple', fontFamily: 'Poppins_500Medium', fontSize:16, textDecorationLine: 'underline'}}>See All</Text>
                     </SeeAll>
                 </View>
-                    <Carousel 
-                        data={animesData}
-                        renderItem={renderItem.bind(this)}
-                        sliderWidth={400}
-                        itemWidth={150}
-                        useScrollView={true}
-                    />
+
+                <Carousel 
+                    data={musicsData}
+                    renderItem={renderItem.bind(this)}
+                    sliderWidth={300}
+                    itemWidth={200}
+                    useScrollView={true}
+                />  
+
+                <View
+                style={{
+                    marginVertical: 15,
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                }}
+                >
+                    <Text style={{color:'white', fontFamily: 'Poppins_500Medium', fontSize:20}}>Movies</Text>
+                    <SeeAll>
+                    <Text style={{color:'purple', fontFamily: 'Poppins_500Medium', fontSize:16, textDecorationLine: 'underline'}}>See All</Text>
+                    </SeeAll>
                 </View>
+
+                <Carousel 
+                    data={moviesData}
+                    renderItem={renderItem.bind(this)}
+                    sliderWidth={300}
+                    itemWidth={200}
+                    useScrollView={true}
+                />
+
             </ScrollView>
-            
+
                 
                 
         </Container>
@@ -262,4 +212,3 @@ function Homepage({ navigation }){
 
 
 export default Homepage;
-
