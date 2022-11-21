@@ -68,20 +68,20 @@ const animesData = [
     }
 ]
 
-const moviesData = [
-    {
-        title: 'Trending Movies',
-        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658438856724511/eternos.jpg'
-    },
-    {
-        title: 'Trending Movies',
-        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658438856724511/eternos.jpg'
-    },
-    {
-        title: 'Hot Movies',
-        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658438856724511/eternos.jpg'
-    }
-];
+//const moviesData = [
+//    {
+//        title: 'Trending Movies',
+//        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658438856724511/eternos.jpg'
+//    },
+//    {
+//        title: 'Trending Movies',
+//        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658438856724511/eternos.jpg'
+//    },
+//    {
+//        title: 'Hot Movies',
+//        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658438856724511/eternos.jpg'
+//    }
+//];
 
 const Tab = createBottomTabNavigator();
 
@@ -89,6 +89,7 @@ function Homepage({ navigation }){
 
     const [hastag, setHastag] = useState([]);
     const [trendyMovie, setTrendyMovie] = useState([]);
+    const [trendyAnime, setTrendyANime] = useState([]);
 
     useEffect(() => {
         axios.get('https://trendy-tiktok-api.herokuapp.com/trend-api/wsgeral/hastag')
@@ -100,8 +101,18 @@ function Homepage({ navigation }){
         });
 
         axios.get('https://trendy-pro.herokuapp.com/trendingMovies')
-        .then(responseData => {
-            setTrendyMovie(responseData.data)
+        .then(response=> {
+            setTrendyMovie(response.data)
+            //console.log(responseData.data)
+        })
+        .catch(err => {
+            console.log(err);
+        });
+
+        axios.get('https://trendy-pro.herokuapp.com/trendingAnimes')
+        .then(response=> {
+            setTrendyANime(response.data)
+            //console.log(responseData.data)
         })
         .catch(err => {
             console.log(err);
@@ -119,11 +130,21 @@ function Homepage({ navigation }){
             </View>
         );
     }
+    
+    let moviesData = []
 
-
+    function mapTrendMovie(){
+        trendyMovie.map((item)=>{
+            let mapMovie = {
+                title: item.title,
+                image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658438856724511/eternos.jpg'
+            }
+            moviesData.push(mapMovie);
+        })
+        return moviesData;
+    }
 
     return (
-
         
         <Container style={{flex:1,backgroundColor:'#16293E', }}>
             
@@ -227,7 +248,7 @@ function Homepage({ navigation }){
                     </View>
 
                     <Carousel 
-                        data={moviesData}
+                        data={mapTrendMovie()}
                         renderItem={renderItem.bind(this)}
                         sliderWidth={400}
                         itemWidth={150}
@@ -252,7 +273,6 @@ function Homepage({ navigation }){
                     <Text style={{color:'purple', fontFamily: 'Montserrat_500Medium', fontSize:16, textDecorationLine: 'underline'}}>See All</Text>
                     </SeeAll>
                 </View>
-
                     <Carousel 
                         data={animesData}
                         renderItem={renderItem.bind(this)}
@@ -261,35 +281,6 @@ function Homepage({ navigation }){
                         useScrollView={true}
                     />
                 </View>
-
-                trendyMovie.map((item) => {
-                        <View style={{marginTop: 30, marginBottom: 200}}>
-                        <View
-                    style={{
-                        marginVertical: 15,
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                    }}
-                    >
-                        <Image 
-                        source={require('../../assets/Fire.png')}
-                        style={{width: 30, height: 30, marginRight: -60}}
-                        />
-                        <Text style={{color:'white', fontFamily: 'Montserrat_500Medium', fontSize:16}}>Trending Anime</Text>
-                        <SeeAll>
-                        <Text style={{color:'purple', fontFamily: 'Montserrat_500Medium', fontSize:16, textDecorationLine: 'underline'}}>See All</Text>
-                        </SeeAll>
-                    </View>
-
-                        <Carousel 
-                            data={animesData}
-                            renderItem={renderItem.bind(this)}
-                            sliderWidth={400}
-                            itemWidth={150}
-                            useScrollView={true}
-                        />
-                    </View>
-                })
             </ScrollView>
             
                 
@@ -298,6 +289,5 @@ function Homepage({ navigation }){
         
     )
 }
-
 
 export default Homepage;
