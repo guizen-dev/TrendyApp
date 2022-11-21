@@ -41,32 +41,20 @@ import { useEffect, useState } from "react";
 
 const Drawer = createDrawerNavigator();
 
-const trendsData = [
-    {   
-        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658104537124924/mano.webp'
-    },
-    {   
-        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658104537124924/mano.webp'
-    },
-    {   
-        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658104537124924/mano.webp'
-    }
-]
-
-const animesData = [
-    {
-        title: 'Trending Anime',
-        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658653542154290/juju.jpg'
-    },
-    {
-        title: 'Trending Anime',
-        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658653542154290/juju.jpg'
-    },
-    {
-        title: 'Trending Anime',
-        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658653542154290/juju.jpg'
-    }
-]
+//const animesData = [
+//    {
+//        title: 'Trending Anime',
+//        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658653542154290/juju.jpg'
+//    },
+//    {
+//        title: 'Trending Anime',
+//        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658653542154290/juju.jpg'
+//    },
+//    {
+//        title: 'Trending Anime',
+//        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658653542154290/juju.jpg'
+//    }
+//]
 
 //const moviesData = [
 //    {
@@ -131,17 +119,43 @@ function Homepage({ navigation }){
         );
     }
     
-    let moviesData = []
+    let moviesData = [];
+    let animesData = [];
 
     function mapTrendMovie(){
+        i = 0;
         trendyMovie.map((item)=>{
-            let mapMovie = {
-                title: item.title,
-                image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658438856724511/eternos.jpg'
+            if (i < 5){
+                let mapMovie = {
+                    title: item.title,
+                    image: 'https://image.tmdb.org/t/p/original'+item.backdrop_path
+                }
+                moviesData.push(mapMovie);
+                i++;
             }
-            moviesData.push(mapMovie);
         })
         return moviesData;
+    }
+
+    function mapTrendAnime(){
+        i = 0;
+        trendyAnime.map((item)=>{
+            try{
+                if (i < 5){
+                    let resultTitle = item.title
+                    let mapAnime = {
+                        title: resultTitle['english'],
+                        image: item.bannerImage
+                    }
+                    animesData.push(mapAnime);
+                    i++;
+                }
+            }
+            catch(err){
+                console.log('error')
+            }
+        })
+        return animesData;
     }
 
     return (
@@ -274,7 +288,7 @@ function Homepage({ navigation }){
                     </SeeAll>
                 </View>
                     <Carousel 
-                        data={animesData}
+                        data={mapTrendAnime()}
                         renderItem={renderItem.bind(this)}
                         sliderWidth={400}
                         itemWidth={150}
