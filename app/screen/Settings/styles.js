@@ -1,29 +1,31 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.SafeAreaView`
-
     padding-top: 20px;
 `
 
 export const Title = styled.Text`
-color: #FFF;
-font-size: 26px;
-font-weight: 700;
+    color: #FFF;
+    font-size: 30px;
+    font-weight: 700;
+`  
+
+export const IconTitle = styled.Text`
+    color: #A4A4A4;
+    font-size: 14px;
+    font-weight: 700;
 `  
 
 export const Text = styled.Text`
-
-    color: #FFF;
-    font-size: 18px;
-    margin-bottom: 3px;
-    font-weight: 400;
-    line-height: 22px;
+    font-size: 16px;
 `
 
 export const SubTitle = styled.Text`
-font-size: 26px;
-color: #868C9B;
-font-weight: 500;
+    color: #FFF;
+    font-size: 16px;
+    opacity: 0.4;
+    margin-bottom: 30px;
+    text-align: center;
 `
 
 export const Input = styled.TextInput`
@@ -60,6 +62,4 @@ export const View = styled.View`
 export const ImageBackground = styled.ImageBackground`
 
 `
-export const SignoutrSubmit = styled.TouchableOpacity`
-    
-`
+

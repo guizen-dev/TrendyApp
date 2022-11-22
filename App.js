@@ -10,7 +10,8 @@ import Homepage from './app/screen/Homepage/Homepage';
 import ProfileScreen from "./app/screen/ProfileScreen/ProfileScreen";
 import HubScreen from './app/screen/HubScreen/HubScreen';
 import NotificationScreen from './app/screen/NotificationScreen/NotificationScreen';
-import TrendScreen from './app/screen/TrendScreen/TrendScreen'
+import TrendScreen from './app/screen/TrendScreen/TrendScreen';
+import Settings from './app/screen/Settings/Settings';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { 
   Montserrat_100Thin,
@@ -86,6 +87,7 @@ export default function App() {
           <Stack.Screen name='HubScreen' component={HubScreen} />
           <Stack.Screen name='TrendScreen' component={TrendScreen} />
           <Stack.Screen name='NotificationScreen' component={NotificationScreen} />
+          <Stack.Screen name='Settings' component={Settings} />
         </Stack.Navigator>
       </NavigationContainer>
     </>

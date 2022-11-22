@@ -17,20 +17,19 @@ function Register({ navigation }) {
     function usernameValid() {
         var username_lenght = username.length
         if (username_lenght > 30 || username_lenght == 0) {
-            console.log('Username should be smaller than 30 characteres')
-            Toast.error('Username should be smaller than 30 characteres')
+            console.log('Username not valid')
+            Toast.error('Username not valid')
             return false
         } else {
             return true
         }
     }
 
-    function emailValid() {
+    function emailValid(){
         let res = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         if (res.test(email)) {
             return true
         } else {
-            () => setModalOpen(true)
             console.log('Email not valid')
             Toast.error('Email not valid')
 
@@ -53,8 +52,8 @@ function Register({ navigation }) {
         if (res.test(password)) {
             return true
         } else {
-            console.log('(ERROR)Example: Password123@')
-            Toast.error('(ERROR)Example: Password123@')
+            console.log('Example: Password123@')
+            Toast.error('Example: Password123@')
             return false
         }
     }
@@ -69,6 +68,10 @@ function Register({ navigation }) {
         }
     }
 
+    const sleep = (duration) => {
+        return new Promise(resolve => setTimeout(resolve, duration));
+    } 
+
     function ValidateRegister() {
         if (usernameValid()) {
             if (emailValid()) {
@@ -76,6 +79,9 @@ function Register({ navigation }) {
                     if (passwordValid()) {
                         if (confirmPasswordValid()) {
                             Toast.success('User registered')
+                            sleep(3000).then(() => {
+                                navigation.navigate('Signin')
+                            }) 
                             return
                         }
                     }
@@ -93,11 +99,12 @@ function Register({ navigation }) {
 
                 <ToastManager position="top"/>
 
+                <Title style={{marginBottom: 70}}>Register</Title>
 
-                    <Title>Register</Title>
 
-
-                    <Icon onPress={() => navigation.navigate('Signin')} name="arrow-left" size={30} color="white" style={{ position: 'absolute', top: 40, left: 25 }} />
+                <View>
+                    <Icon onPress={() => navigation.navigate('Signin')} name="arrow-left" size={30} color="white"  style={{position:'absolute', top: -118, left: -150}} />
+                </View>
 
 
                     <View style={{ flexDirection: 'row', }}>
@@ -105,7 +112,7 @@ function Register({ navigation }) {
                             placeholder="Username"
                             maxLength={30}
                             onChangeText={setUsername}
-                            rvalue={username}
+                            value={username}
                         >
                         </Input>
                         <Feather name="user" size={30} color="white" style={{ position: 'absolute', top: 14, right: 15 }} />
@@ -154,14 +161,12 @@ function Register({ navigation }) {
                             maxLength={30}
                         >
                         </Input>
-                        <Icon name="eye-slash" size={30} color="white" style={{ position: 'absolute', right: 15, marginTop: 14, marginLeft: 7 }} />
+                        <Icon name="eye-slash" size={30} color="white"  style={{position: 'absolute', right: 15, marginTop: 14, marginLeft: 7}} />
                     </View>
 
-                    <View>
-                        <RegisterSubmit onPress={() => ValidateRegister()}>
+                    <RegisterSubmit onPress={() => ValidateRegister()}>
                             <TextSubmit>Register</TextSubmit>
-                        </RegisterSubmit>
-                    </View>
+                    </RegisterSubmit>
 
                     <LoginSubmit onPress={() => navigation.navigate('Signin')}>
                         <Text style={{ textDecorationLine: 'underline', color: 'white', marginBottom: 25, }}>already have an account? Login now.</Text>

@@ -39,20 +39,23 @@ export const Input = styled.TextInput`
     font-size: 15px;
     border-radius: 28px;
     width: 300px;
+    font-weight: 700;
 `
 
 export const ButtonSubmit = styled.TouchableOpacity`
     backgroundColor: #0D0D1F;
     border-radius: 28px;
     padding: 10px 20px;
-    width: 280px;
+    width: 300px;
     align-items: center;
-    margin-bottom: 20px
+    margin-bottom: -450px
 `
 
 export const TextSubmit = styled.Text`
-    font-size: 20px;
+    font-size: 25px;
     color: #fff;
     font-weight: bold;
 `
 
+export const View = styled.View`
+`

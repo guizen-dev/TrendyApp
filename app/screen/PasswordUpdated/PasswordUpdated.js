@@ -16,6 +16,7 @@ import  AfirmativoImg  from '../../assets/Afirmativo.png';
 import {LinearGradient} from 'expo-linear-gradient'
 
 function PasswordUpdated({ navigation }) {
+
     return(
         <KeyboardView>
             <LinearGradient colors={['#16293E', '#1D1E32']}>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Container, Title, Hamburger, TouchableOpacity, ImageBackground}  from './styles'
+import { View, Text, Container, Title, Hamburger, TouchableOpacity, ImageBackground, SignoutrSubmit, SubTitle}  from './styles'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicon from 'react-native-vector-icons/Ionicons'
@@ -14,42 +14,64 @@ import { Touchable } from 'react-native-web';
 
 const Tab = createBottomTabNavigator();
 
-function ProfileScreen( navigation ){
+function ProfileScreen( {navigation} ){
     return(
-        <Container style={{flex:1,backgroundColor:'#18171F'}}>
+        <Container style={{flex:1,backgroundColor:'#16293E'}}>
+            <Title style={{fontSize: 26, marginVertical: 20, left: 100}}>My profile</Title>
             <View style={{flexDirection:'row',justifyContent:'space-between', marginBottom:20,alignItems:'center'}}>
-                <Hamburger>
-                    <ImageBackground
-                    source={require('../../assets/logo.png')}
-                    style={{width:55, height:45}}
-                    imageStyle={{borderRadius: 10}}
-                    />
-                </Hamburger>
-                <TouchableOpacity onPress={() => navigation.navigate('ProfileScreen')}>
-                    <ImageBackground 
-                        source={require('../../assets/Lindo2.png')}
-                        style={{width:35, height:35}}
-                        imageStyle={{borderRadius: 25}}
-                    />
-                </TouchableOpacity>
+                
             </View>
 
                 <View 
                 style={{
                     marginVertical: 15,
                     justifyContent: 'space-between',
+                    
                 }}>
 
                     <ImageBackground
                         source={require('../../assets/Lindo2.png')}
-                        style={{width:90, height:90}}
-                        imageStyle={{borderRadius: 50}}
+                        style={{width:90, height:90, borderColor: '#FFF'}}
+                        imageStyle={{borderRadius: 23, borderColor: ''}}
                     />
 
-                    <Title style={{marginTop: 15,}}>Vinicius</Title>
-                    <Text>Ribeiro</Text>
+                    <Title style={{position: 'absolute',
+                            width: 181,
+                            height: 32,
+                            left: 100,
+                            top: 15}}>Vinicius</Title>
+                    <SubTitle style={{position: 'absolute',
+                            width: 181,
+                            height: 32,
+                            left: 100,
+                            top: 50}}>Vinicius Ribeiro</SubTitle>                    
+                </View>
 
-                    
+                <View>
+                <Text style={{color:'#8C9199'}}>Description</Text>
+
+                <View style={{
+                    flexDirection: "row"
+                }}>
+                <Feather name="map-pin" size={25} color="#8C9199" style={{padding: 2}} />   
+                <Text style={{color:'#8C9199'}}>Cidade | AA</Text>
+                </View>
+                
+                <View style={{
+                    flexDirection: "row"
+                }}>
+                <Feather name="twitter" size={25} color="#8C9199" style={{padding: 2}} /> 
+                <Text style={{color:'#8C9199'}}>@arroba_twitter</Text>
+                </View>
+
+                <View style={{padding: 20, 
+                borderLeftWidth: 1,
+                borderBottomColor: 'white',
+                
+                marginVertical: 12}}>
+                <Text style={{color:'#8C9199'}}>Joined</Text>
+                <Text styled={{top: 20, color:'FFF'}}>6 mon ago</Text>
+                </View>
                 </View>
 
                 <View 
@@ -65,17 +87,16 @@ function ProfileScreen( navigation ){
                         width: '100%',
                         padding: 10,
                         flexDirection: 'row',
-                        borderBottomWidth: 1,
-                        borderBottomColor: 'white',
-                        marginBottom: 20
+                        marginBottom: 25
                     }}
                     >
+
                     <TouchableOpacity
                     style={{
                         width: 45,
                         height: 45,
                         borderRadius: 50,
-                        backgroundColor: '#FEDDC9',
+                        backgroundColor: '#6541F5',
                         justifyContent: 'center',
                         alignItems: 'center',
                         marginRight: 30,
@@ -83,7 +104,9 @@ function ProfileScreen( navigation ){
                     >
                         <Feather name="bookmark" color="black" size={30}/>
                     </TouchableOpacity>
-                        <Title>Saved</Title>
+
+                        <Title style={{fontSize: 20, top: 8}}>Saved</Title>
+                        
                         <TouchableOpacity
                         style={{
                             width: 45,
@@ -92,115 +115,42 @@ function ProfileScreen( navigation ){
                             backgroundColor: '#0F0F13',
                             justifyContent: 'center',
                             alignItems: 'center',
-                            marginLeft: '40%',
+                            marginLeft: '42%',
                         }}
                         >
                             <Feather name="chevron-right" color="white" size={30} />
                         </TouchableOpacity>
+
                     </TouchableOpacity>
 
-                    <View
-                    style={{
+                   
+
+                    
+
+                    <View>
+                    <TouchableOpacity style={{
                         width: '100%',
                         padding: 10,
                         flexDirection: 'row',
-                        borderBottomWidth: 1,
-                        borderBottomColor: 'white',
-                        marginBottom: 20
-                    }}
-                    >
+                        
+                    }} onPress={() => navigation.navigate('Settings')}>
+
                     <TouchableOpacity
                     style={{
                         width: 45,
                         height: 45,
                         borderRadius: 50,
-                        backgroundColor: '#CECBFF',
+                        backgroundColor: '#fff',
                         justifyContent: 'center',
                         alignItems: 'center',
                         marginRight: 30,
                     }}
                     >
-                        <Ionicon name="pulse" color="black" size={30}/>
+                        <Feather name="grid" color="#6541F5" size={30}/>
                     </TouchableOpacity>
-                        <Title>Stats</Title>
-                        <TouchableOpacity
-                        style={{
-                            width: 45,
-                            height: 45,
-                            borderRadius: 10,
-                            backgroundColor: '#0F0F13',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            marginLeft: '43%',
-                        }}
-                        >
-                            <Feather name="chevron-right" color="white" size={30} />
-                        </TouchableOpacity>
-                    </View>
 
-                    <View
-                    style={{
-                        width: '100%',
-                        padding: 10,
-                        flexDirection: 'row',
-                        borderBottomWidth: 1,
-                        borderBottomColor: 'white',
-                        marginBottom: 20
-                    }}
-                    >
-                    <TouchableOpacity
-                    style={{
-                        width: 45,
-                        height: 45,
-                        borderRadius: 50,
-                        backgroundColor: '#DAFEC9',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        marginRight: 30,
-                    }}
-                    >
-                        <Feather name="info" color="black" size={30}/>
-                    </TouchableOpacity>
-                        <Title>Goals</Title>
-                        <TouchableOpacity
-                        style={{
-                            width: 45,
-                            height: 45,
-                            borderRadius: 10,
-                            backgroundColor: '#0F0F13',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            marginLeft: '40%',
-                        }}
-                        >
-                            <Feather name="chevron-right" color="white" size={30} />
-                        </TouchableOpacity>
-                    </View>
+                        <Title style={{fontSize: 20, top: 8}}>Settings</Title>
 
-                    <View
-                    style={{
-                        width: '100%',
-                        padding: 10,
-                        flexDirection: 'row',
-                        borderBottomWidth: 1,
-                        borderBottomColor: 'white',
-                        marginBottom: 20
-                    }}
-                    >
-                    <TouchableOpacity
-                    style={{
-                        width: 45,
-                        height: 45,
-                        borderRadius: 50,
-                        backgroundColor: '#C8F1FF',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        marginRight: 30,
-                    }}
-                    >
-                        <Feather name="settings" color="black" size={30}/>
-                    </TouchableOpacity>
-                        <Title>Settings</Title>
                         <TouchableOpacity
                         style={{
                             width: 45,
@@ -214,22 +164,36 @@ function ProfileScreen( navigation ){
                         >
                             <Feather name="chevron-right" color="white" size={30} />
                         </TouchableOpacity>
-                    </View>
+
+                        </TouchableOpacity>
                     
+
+                    </View>
+
+                    <View style={{
+                        flexDirection: 'row',
+                    }}>
                     <TouchableOpacity
                     style={{
-                        width: 110,
-                        borderRadius: 5,
+                        width: 102,
+                        height: 50,
+                        borderRadius: 7,
                         backgroundColor: '#1D1C23',
                         flexDirection: 'row',
                         justifyContent: 'space-between',
                         alignItems: 'center',
-                        padding: 5
+                        padding: 1,
+                        left: 220,
+                        top: 25
                     }}
                     >
-                        <Ionicon name="exit-outline" color="red" size={30} />
-                        <Text style={{color: 'red', fontSize: 19}}>Sign out</Text>
+                        <SignoutrSubmit onPress={() => navigation.navigate('Signin')}>
+                        <Ionicon name="exit-outline" color="red" size={24} style={{position: 'absolute', top:-13, left: 10}}/>
+                        <Text style={{color: 'red', fontSize: 16, position: 'absolute', top:-12, left: 36}}>Sign out</Text>
+                        </SignoutrSubmit>
                     </TouchableOpacity>
+                    </View>
+
                 </View>
         </Container>
     )

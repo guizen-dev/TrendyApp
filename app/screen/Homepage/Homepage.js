@@ -41,37 +41,19 @@ import { useEffect, useState } from "react";
 
 const Drawer = createDrawerNavigator();
 
-//const animesData = [
-//    {
-//        title: 'Trending Anime',
-//        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658653542154290/juju.jpg'
-//    },
-//    {
-//        title: 'Trending Anime',
-//        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658653542154290/juju.jpg'
-//    },
-//    {
-//        title: 'Trending Anime',
-//        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658653542154290/juju.jpg'
-//    }
-//]
-
-//const moviesData = [
-//    {
-//        title: 'Trending Movies',
-//        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658438856724511/eternos.jpg'
-//    },
-//    {
-//        title: 'Trending Movies',
-//        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658438856724511/eternos.jpg'
-//    },
-//    {
-//        title: 'Hot Movies',
-//        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658438856724511/eternos.jpg'
-//    }
-//];
-
 const Tab = createBottomTabNavigator();
+
+const lastNewsData = [
+    {
+        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658104537124924/mano.webp'
+    },
+    {
+        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658104537124924/mano.webp'
+    },
+    {
+        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658104537124924/mano.webp'
+    }
+];
 
 function Homepage({ navigation }){
 
@@ -113,7 +95,7 @@ function Homepage({ navigation }){
             <View style={{justifyContent: 'center',}}>
                     <Text style={{color:'white', fontWeight: 'bold'}}>{item.title}</Text>
                     <TouchableOpacity>
-                    <Image style={{width:'100%', height:200, borderRadius: 10 }} source={{uri: `${item.image}`}} />
+                    <Image style={{width:'90%', height:200, borderRadius: 10 }} source={{uri: `${item.image}`}} />
                     </TouchableOpacity>
             </View>
         );
@@ -194,9 +176,16 @@ function Homepage({ navigation }){
                     <Text style={{color:'white', fontFamily: 'Montserrat_500Medium', fontSize:20}}>Last News</Text>
                 </View>
 
-                <Image
-                    source={require('../../assets/mano.png')}
-                    style={{width: 338, height: 188, borderRadius: 20}}
+                <Carousel 
+                    data={lastNewsData}
+                    renderItem={renderItem.bind(this)}
+                    sliderWidth={400}
+                    itemWidth={350}
+                    useScrollView={true}
+                    enableSnap={true}
+                    loop={true}
+                    loopClonesPerSide={3}
+                            
                 />
 
                 <View style={{marginTop: 50,}}>
@@ -267,6 +256,8 @@ function Homepage({ navigation }){
                         sliderWidth={400}
                         itemWidth={150}
                         useScrollView={true}
+                        loop={true}
+                        loopClonesPerSide={4}
                     />
                 </View>
 
@@ -293,14 +284,12 @@ function Homepage({ navigation }){
                         sliderWidth={400}
                         itemWidth={150}
                         useScrollView={true}
+                        loop={true}
+                        loopClonesPerSide={4}
                     />
                 </View>
-            </ScrollView>
-            
-                
-                
+            </ScrollView>                
         </Container>
-        
     )
 }
 

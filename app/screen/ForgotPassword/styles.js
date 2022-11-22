@@ -26,6 +26,7 @@ export const Title = styled.Text`
     color: #FFF;
     font-size: 36px;
     font-weight: 700;
+    margin-bottom: 30px;
 `  
 
 export const SubTitle = styled.Text`
@@ -42,7 +43,7 @@ export const Input = styled.TextInput`
     color: #fff;
     font-size: 15px;
     border-radius: 28px;
-    width: 90%;
+    width: 300px;
     font-weight: 700;
 `
 export const ButtonSubmit = styled.TouchableOpacity`
@@ -62,7 +63,7 @@ export const KeySubmit = styled.TouchableOpacity`
     width: 300px;
     height: 54px;
     align-items: center; 
-    margin-bottom: 20px
+    margin-bottom: -500px
 `
 
 export const TextSubmit = styled.Text`
@@ -85,3 +86,4 @@ export const PhoneKey = styled.TouchableOpacity`
 
 export const View = styled.View`
 `
+

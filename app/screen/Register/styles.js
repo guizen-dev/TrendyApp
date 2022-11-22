@@ -44,7 +44,8 @@ export const Text = styled.Text`
     color: white;
 `
 export const TextSubmit = styled.Text`
-    font-size: 20px;
+    font-weight: 700;
+    font-size: 24px;
     color: #fff;
     font-weight: bold;
 `
@@ -63,9 +64,10 @@ export const RegisterSubmit = styled.TouchableOpacity`
 backgroundColor: #0D0D1F;
 border-radius: 28px;
 padding: 15px 20px;
-width: 85%;
+width: 300px;
 align-items: center;
 margin-bottom: 20px
+
 `
 export const LoginSubmit = styled.TouchableOpacity`
     

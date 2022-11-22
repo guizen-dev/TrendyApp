@@ -57,3 +57,50 @@ export const ImageBackground = styled.ImageBackground`
 
 `
 
+export const GoogleSubmit = styled.TouchableOpacity`
+    width: 54px;
+    height: 54px;
+    align-items: center;
+    justify-content: center;
+    background: #FFFFFF;
+    box-shadow: 0px 20px 60px rgba(55, 62, 125, 0.05);
+    border-radius: 30px;
+`
+export const FacebookSubmit = styled.TouchableOpacity`
+    width: 54px;
+    height: 54px;
+    align-items: center;
+    justify-content: center;
+    background: #77ADFF;
+    box-shadow: 0px 20px 60px rgba(55, 62, 125, 0.05);
+    border-radius: 30px;
+`
+
+export const TwitterSubmit = styled.TouchableOpacity`
+    width: 54px;
+    height: 54px;
+    align-items: center;
+    justify-content: center;
+    background: #00ACED;
+    box-shadow: 0px 20px 60px rgba(55, 62, 125, 0.05);
+    border-radius: 30px;
+`
+export const TikTokSubmit = styled.TouchableOpacity`
+    width: 54px;
+    height: 54px;
+    align-items: center;
+    justify-content: center;
+    background: #FFF;
+    box-shadow: 0px 20px 60px rgba(55, 62, 125, 0.05);
+    border-radius: 30px;
+`
+
+export const YoutubeSubmit = styled.TouchableOpacity`
+    width: 54px;
+    height: 54px;
+    align-items: center;
+    justify-content: center;
+    background: #FF0000;
+    box-shadow: 0px 20px 60px rgba(55, 62, 125, 0.05);
+    border-radius: 30px;
+`
