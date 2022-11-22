@@ -23,11 +23,19 @@ import {LinearGradient} from 'expo-linear-gradient'
 import  Feather  from 'react-native-vector-icons/Feather'
 import Homepage from '../Homepage/Homepage';
 import ProfileScreen from '../ProfileScreen/ProfileScreen';
+import { useEffect, useState } from "react";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 function  Signin({ navigation }) {
+    const [login, setLogin] = useState("")
+    const [password, setPassword] = useState("")
+
+    function validLogin(){
+        navigation.navigate('HubScreen')
+    }
+
     return(
         
         <KeyboardView>
@@ -51,7 +59,7 @@ function  Signin({ navigation }) {
             <Input
                 placeholderTextColor="#fff"
                 placeholder="Username" 
-                
+                value = {login} 
             >
             </Input>
             <Feather name="user" size={30} color="white" style={{position: 'absolute', right: 15, marginTop: 14}} />
@@ -66,7 +74,8 @@ function  Signin({ navigation }) {
             <Input
                 placeholderTextColor="#fff"
                 secureTextEntry={true}
-                placeholder="Password"       
+                placeholder="Password"  
+                value = {password}     
                        
                 ></Input>
             <Icon name="eye-slash" size={30} color="white"  style={{position: 'absolute', right: 15, marginTop: 14, marginLeft: 7}} />
@@ -74,7 +83,7 @@ function  Signin({ navigation }) {
             
             </View>
             
-            <ButtonSubmit onPress={() => navigation.navigate('HubScreen')}>               
+            <ButtonSubmit onPress={()=>validLogin()}>               
                 <TextSubmit>Login</TextSubmit>
             </ButtonSubmit>
             

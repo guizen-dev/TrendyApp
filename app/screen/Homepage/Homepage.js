@@ -23,9 +23,9 @@ import { View,
  import axios from 'axios';
  import Icon from 'react-native-vector-icons/FontAwesome';
  import Feather from 'react-native-vector-icons/Feather'
-  import { useFonts } from 'expo-font';
-  import Carousel from 'react-native-snap-carousel';
-  import Pagination from 'react-native-snap-carousel';
+import { useFonts } from 'expo-font';
+import Carousel from 'react-native-snap-carousel';
+import Pagination from 'react-native-snap-carousel';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {LinearGradient} from 'expo-linear-gradient'
