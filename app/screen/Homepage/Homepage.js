@@ -125,9 +125,10 @@ function Homepage({ navigation }){
             try{
                 if (i < 5){
                     let resultTitle = item.title
+                    let resultImage = item.coverImage
                     let mapAnime = {
                         title: resultTitle['english'],
-                        image: item.bannerImage
+                        image: resultImage['extraLarge']
                     }
                     animesData.push(mapAnime);
                     i++;

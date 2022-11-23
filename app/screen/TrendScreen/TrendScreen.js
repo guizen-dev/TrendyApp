@@ -41,6 +41,7 @@ import PasswordUpdated from '../PasswordUpdated/PasswordUpdated'
 import { Ionicons } from '@expo/vector-icons'
 import {LinearGradient} from 'expo-linear-gradient'
 import { useEffect, useState } from "react";
+import axios from 'axios';
 
 const catalogData = [
     {
@@ -76,30 +77,72 @@ const topFilmsData = [
     }
 ];
 
-const topAnimesData = [
-    {
-        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1044428115914522644/689e2efcf9f192ba6c0f7a538ee99027.jpeg'
-    },
-    {
-        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1044428115914522644/689e2efcf9f192ba6c0f7a538ee99027.jpeg'
-    },
-    {
-        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1044428115914522644/689e2efcf9f192ba6c0f7a538ee99027.jpeg'
-    },
-    {
-        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1044428115914522644/689e2efcf9f192ba6c0f7a538ee99027.jpeg'
-    }
-];
-
 
 
 function TrendScreen ({ navigation }){
-    const [filme, setFilme] = useState([]);
-    const [anime, setAnime] = useState([]);
+    const [trendyMovie, setTrendyMovie] = useState([]);
+    const [trendyAnime, setTrendyAnime] = useState([]);
 
     useEffect(() => {
-        
+        axios.get('https://trendy-pro.herokuapp.com/trendingMovies')
+        .then(response=> {
+            setTrendyMovie(response.data)
+            //console.log(responseData.data)
+        })
+        .catch(err => {
+            console.log(err);
+        });
+
+        axios.get('https://trendy-pro.herokuapp.com/trendingAnimes')
+        .then(response=> {
+            setTrendyAnime(response.data)
+            //console.log(responseData.data)
+        })
+        .catch(err => {
+            console.log(err);
+        });
     }, []);
+
+
+    let topFilmsData = [];
+    let topAnimesData = [];
+
+    function mapTrendMovie(){
+        trendyMovie.map((item)=>{
+            let mapMovie = {
+            title: item.title,
+                image: 'https://image.tmdb.org/t/p/original'+item.backdrop_path
+            }
+            topFilmsData.push(mapMovie);
+        })
+        return topFilmsData;
+    }
+
+    function mapTrendAnime(){
+        trendyAnime.map((item)=>{
+            try{
+                let resultTitle = item.title
+                let mapAnime = {
+                    title: resultTitle['english'],
+                    image: item.bannerImage,
+                }
+                if(mapAnime.image == null){
+                    console.log('No image')
+                    let mapAnime = {
+                        title: resultTitle['english'],
+                        image: 'https://media.istockphoto.com/id/1357365823/vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo.jpg?s=612x612&w=0&k=20&c=PM_optEhHBTZkuJQLlCjLz-v3zzxp-1mpNQZsdjrbns=',
+                    }
+                    topAnimesData.push(mapAnime)
+                }
+                topAnimesData.push(mapAnime);
+            }
+            catch(err){
+                console.log('error')
+            }
+        })
+        return topAnimesData;
+    }
+
 
     function renderItem({ item }){
         return(
@@ -222,7 +265,7 @@ function TrendScreen ({ navigation }){
                         </View>
 
                         <Carousel 
-                            data={topFilmsData}
+                            data={mapTrendMovie()}
                             renderItem={renderItem2.bind(this)}
                             sliderWidth={400}
                             itemWidth={350}
@@ -250,7 +293,7 @@ function TrendScreen ({ navigation }){
                         </View>
 
                         <Carousel 
-                            data={topAnimesData}
+                            data={mapTrendAnime()}
                             renderItem={renderItem2.bind(this)}
                             sliderWidth={400}
                             itemWidth={350}
@@ -269,7 +312,6 @@ function TrendScreen ({ navigation }){
                         }}
                         >
                             <Image 
-                            source={require('../../assets/Fire.png')}
                             style={{width: 30, height: 30, marginRight: -60}}
                             />
                             <Title>Affairs of the Day</Title>
