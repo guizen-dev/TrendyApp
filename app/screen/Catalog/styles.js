@@ -17,9 +17,7 @@ export const IconTitle = styled.Text`
 `  
 
 export const Text = styled.Text`
-    font-size: 20px;
-    color: #FFF;
-    font-weight: 400;
+    font-size: 16px;
 `
 
 export const SubTitle = styled.Text`

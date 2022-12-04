@@ -7,7 +7,7 @@ export const Container = styled.SafeAreaView`
 export const Title = styled.Text`
     color: #FFF;
     font-size: 30px;
-    font-weight: 700;
+    font-weight: 900;
 `  
 
 export const IconTitle = styled.Text`
@@ -17,17 +17,11 @@ export const IconTitle = styled.Text`
 `  
 
 export const Text = styled.Text`
-    font-size: 20px;
-    color: #FFF;
-    font-weight: 400;
-`
-
-export const SubTitle = styled.Text`
-    color: #FFF;
-    font-size: 16px;
-    opacity: 0.4;
-    margin-bottom: 30px;
-    text-align: center;
+font-weight: 400;
+font-size: 20px;
+line-height: 22px;
+color: #FFFFFF;
+margin-bottom: 0px;
 `
 
 export const Input = styled.TextInput`
@@ -65,3 +59,11 @@ export const ImageBackground = styled.ImageBackground`
 
 `
 
+export const SubTitle = styled.Text`
+    color: #FFF;
+    font-size: 20px;
+    opacity: 0.4;
+    margin-bottom: 2px;
+    text-align: left;
+    font-weight: 400px;
+`

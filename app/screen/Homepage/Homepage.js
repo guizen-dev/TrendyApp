@@ -59,7 +59,8 @@ function Homepage({ navigation }){
 
     const [hastag, setHastag] = useState([]);
     const [trendyMovie, setTrendyMovie] = useState([]);
-    const [trendyAnime, setTrendyANime] = useState([]);
+    const [trendyAnime, setTrendyAnime] = useState([]);
+    const [tvShow, setTvShow] = useState([]);
 
     useEffect(() => {
         axios.get('https://trendy-tiktok-api.herokuapp.com/trend-api/wsgeral/hastag')
@@ -67,50 +68,48 @@ function Homepage({ navigation }){
             setHastag(responseData.data)
         })
         .catch(err => {
-            console.log(err);
+            console.log(err+' Hastag Err');
         });
 
-        axios.get('https://trendy-pro.herokuapp.com/trendingMovies')
+        axios.get('https://keikoapp.herokuapp.com/trendingMovies')
         .then(response=> {
             setTrendyMovie(response.data)
-            //console.log(responseData.data)
         })
         .catch(err => {
             console.log(err);
         });
 
-        axios.get('https://trendy-pro.herokuapp.com/trendingAnimes')
+        axios.get('https://keikoapp.herokuapp.com/trendingAnimes')
         .then(response=> {
-            setTrendyANime(response.data)
-            //console.log(responseData.data)
+            setTrendyAnime(response.data)
+        })
+        .catch(err => {
+            console.log(err);
+        });
+
+        axios.get('https://keikoapp.herokuapp.com/trendingTV')
+        .then(response=> {
+            setTvShow(response.data)
         })
         .catch(err => {
             console.log(err);
         });
 
     }, []);
-
-    function renderItem({ item }){
-        return(
-            <View style={{justifyContent: 'center',}}>
-                    <Text style={{color:'white', fontWeight: 'bold'}}>{item.title}</Text>
-                    <TouchableOpacity>
-                    <Image style={{width:'90%', height:200, borderRadius: 10 }} source={{uri: `${item.image}`}} />
-                    </TouchableOpacity>
-            </View>
-        );
-    }
     
     let moviesData = [];
+    let tvshowData = [];
     let animesData = [];
 
     function mapTrendMovie(){
-        i = 0;
+        let i = 0;
         trendyMovie.map((item)=>{
             if (i < 5){
                 let mapMovie = {
                     title: item.title,
-                    image: 'https://image.tmdb.org/t/p/original'+item.backdrop_path
+                    image: 'https://image.tmdb.org/t/p/original'+item.backdrop_path,
+                    type: "movie",
+                    id: item.id
                 }
                 moviesData.push(mapMovie);
                 i++;
@@ -119,8 +118,25 @@ function Homepage({ navigation }){
         return moviesData;
     }
 
+    function mapTvShow(){
+        let i = 0;
+        tvShow.map((item)=>{
+            if (i < 5){
+                let mapTvShow = {
+                    title: item.name,
+                    image: 'https://image.tmdb.org/t/p/original'+item.backdrop_path,
+                    type: "tvShow",
+                    id: item.id
+                }
+                tvshowData.push(mapTvShow);
+                i++;
+            }
+        })
+        return tvshowData;
+    }
+
     function mapTrendAnime(){
-        i = 0;
+        let i = 0;
         trendyAnime.map((item)=>{
             try{
                 if (i < 5){
@@ -128,7 +144,9 @@ function Homepage({ navigation }){
                     let resultImage = item.coverImage
                     let mapAnime = {
                         title: resultTitle['english'],
-                        image: resultImage['extraLarge']
+                        image: resultImage['extraLarge'],
+                        type: "anime",
+                        id: item.id
                     }
                     animesData.push(mapAnime);
                     i++;
@@ -139,6 +157,49 @@ function Homepage({ navigation }){
             }
         })
         return animesData;
+    }
+
+    function emailValid(){
+        let res = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (res.test(email)) {
+            return true
+        } else {
+            console.log('Email not valid')
+            Toast.error('Email not valid')
+
+        }
+    }
+
+    function passwordValid() {
+        let res = /(?=.*[A-Z])(?=.*[!@#\$%])/;
+        if (res.test(password)) {
+            return true
+        } else {
+            console.log('Example: Password123@')
+            Toast.error('Example: Password123@')
+            return false
+        }
+    }
+
+    function navigate(item){
+        navigation.navigate("MovieDetail",{
+            name: item.title,
+            type: item.type,
+            id: item.id,
+            image: item.image,
+            release_date: item.release_date
+        })
+    }
+
+    function renderItem({ item }){
+        return(
+            <View style={{justifyContent: 'center',}}>
+                    <Text style={{color:'white', fontWeight: 'bold'}}>{item.title}</Text>
+                    <TouchableOpacity onPress={() => navigate(item)}>
+                    <Image style={{width:'90%', height:200, borderRadius: 10 }} source={{uri: `${item.image}`}} />
+                    </TouchableOpacity>
+            </View>
+        );
     }
 
     return (
@@ -190,23 +251,7 @@ function Homepage({ navigation }){
                 />
 
                 <View style={{marginTop: 50,}}>
-                    <Title>Your Trendings</Title>
-                    <View
-                    style={{
-                        flexDirection: 'row',
-                        borderColor: '#7D4192',
-                        borderWidth: 1,
-                        borderRadius: 24,
-                        paddingHorizontal: 10,
-                        paddingVertical: 8,
-                        marginTop: 10,
-                        backgroundColor: '#373543',
-                        alignItems:'center',
-                    }}
-                    >   
-                        <Input placeholder="Search" placeholderTextColor="#fff"/>
-                        <Feather name="search" size={20} color="#C6C6C6" style={{marginRight: 5}} />
-                    </View> 
+                    <Title style={{marginBottom: 30, marginTop: -30}}>Your Trendings</Title>
 
                     <View style={{marginTop: 5, flexDirection:'row', marginLeft: 10}}>
                         <View style={{alignItems: 'center', justifyContent: 'center',flexDirection: 'column', marginRight: 10}}>
@@ -241,13 +286,9 @@ function Homepage({ navigation }){
                         justifyContent: 'space-between',
                     }}
                     >
-                        <Image 
-                    source={require('../../assets/Fire.png')}
-                    style={{width: 30, height: 30, marginRight: -60}}
-                    />
                         <Text style={{color:'white', fontFamily: 'Montserrat_500Medium', fontSize:16}}>Trending Movies</Text>
-                        <SeeAll>
-                        <Text style={{color:'purple', fontFamily: 'Montserrat_500Medium', fontSize:16, textDecorationLine: 'underline'}}>See All</Text>
+                        <SeeAll onPress={() => navigation.navigate('TrendScreen')}>
+                        <Text style={{color:'grey', fontFamily: 'Montserrat_500Medium', fontSize:16, textDecorationLine: 'underline'}}>See All</Text>
                         </SeeAll>
                     </View>
 
@@ -262,7 +303,7 @@ function Homepage({ navigation }){
                     />
                 </View>
 
-                <View style={{marginTop: 30, marginBottom: 200}}>
+                <View style={{marginTop: 30}}>
                     <View
                 style={{
                     marginVertical: 15,
@@ -270,17 +311,39 @@ function Homepage({ navigation }){
                     justifyContent: 'space-between',
                 }}
                 >
-                    <Image 
-                    source={require('../../assets/Fire.png')}
-                    style={{width: 30, height: 30, marginRight: -60}}
-                    />
                     <Text style={{color:'white', fontFamily: 'Montserrat_500Medium', fontSize:16}}>Trending Anime</Text>
-                    <SeeAll>
-                    <Text style={{color:'purple', fontFamily: 'Montserrat_500Medium', fontSize:16, textDecorationLine: 'underline'}}>See All</Text>
+                    <SeeAll onPress={() => navigation.navigate('TrendScreen')}>
+                    <Text style={{color:'grey', fontFamily: 'Montserrat_500Medium', fontSize:16, textDecorationLine: 'underline'}}>See All</Text>
                     </SeeAll>
                 </View>
                     <Carousel 
                         data={mapTrendAnime()}
+                        renderItem={renderItem.bind(this)}
+                        sliderWidth={400}
+                        itemWidth={150}
+                        useScrollView={true}
+                        loop={true}
+                        loopClonesPerSide={4}
+                    />
+                </View>
+
+                <View style={{marginTop: 30, marginBottom: 100}}>
+
+                    <View
+                    style={{
+                        marginVertical: 15,
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                    }}
+                    >
+                        <Text style={{color:'white', fontFamily: 'Montserrat_500Medium', fontSize:16}}>Trending TV Show</Text>
+                        <SeeAll onPress={() => navigation.navigate('TrendScreen')}>
+                        <Text style={{color:'grey', fontFamily: 'Montserrat_500Medium', fontSize:16, textDecorationLine: 'underline'}}>See All</Text>
+                        </SeeAll>
+                    </View>
+
+                    <Carousel 
+                        data={mapTvShow()}
                         renderItem={renderItem.bind(this)}
                         sliderWidth={400}
                         itemWidth={150}

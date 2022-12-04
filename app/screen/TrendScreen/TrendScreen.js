@@ -27,6 +27,7 @@ import { View,
  }  from './styles'
  import Icon from 'react-native-vector-icons/FontAwesome';
  import Feather from 'react-native-vector-icons/Feather'
+ import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome'
   import { useFonts } from 'expo-font';
   import Carousel from 'react-native-snap-carousel';
   import Pagination from 'react-native-snap-carousel';
@@ -82,9 +83,10 @@ const topFilmsData = [
 function TrendScreen ({ navigation }){
     const [trendyMovie, setTrendyMovie] = useState([]);
     const [trendyAnime, setTrendyAnime] = useState([]);
+    const [tvShow, setTvShow] = useState([]);
 
     useEffect(() => {
-        axios.get('https://trendy-pro.herokuapp.com/trendingMovies')
+        axios.get('https://keikoapp.herokuapp.com/trendingMovies')
         .then(response=> {
             setTrendyMovie(response.data)
             //console.log(responseData.data)
@@ -93,10 +95,18 @@ function TrendScreen ({ navigation }){
             console.log(err);
         });
 
-        axios.get('https://trendy-pro.herokuapp.com/trendingAnimes')
+        axios.get('https://keikoapp.herokuapp.com/trendingAnimes')
         .then(response=> {
             setTrendyAnime(response.data)
             //console.log(responseData.data)
+        })
+        .catch(err => {
+            console.log(err);
+        });
+
+        axios.get('https://keikoapp.herokuapp.com/trendingTV')
+        .then(response=> {
+            setTvShow(response.data)
         })
         .catch(err => {
             console.log(err);
@@ -106,41 +116,78 @@ function TrendScreen ({ navigation }){
 
     let topFilmsData = [];
     let topAnimesData = [];
+    let tvshowData = [];
 
     function mapTrendMovie(){
         trendyMovie.map((item)=>{
             let mapMovie = {
-            title: item.title,
-                image: 'https://image.tmdb.org/t/p/original'+item.backdrop_path
+                title: item.title,
+                image: 'https://image.tmdb.org/t/p/original'+item.backdrop_path,
+                type: "movie",
+                id: item.id
+
             }
             topFilmsData.push(mapMovie);
         })
         return topFilmsData;
     }
 
+    function mapTvShow(){
+        tvShow.map((item)=>{
+            let mapTv = {
+                title: item.name,
+                image: 'https://image.tmdb.org/t/p/original'+item.backdrop_path,
+                type: "tvShow",
+                id: item.id
+            }
+            tvshowData.push(mapTv);
+        })
+        return tvshowData;
+    }
+
+    let push = true
+
     function mapTrendAnime(){
         trendyAnime.map((item)=>{
             try{
-                let resultTitle = item.title
-                let mapAnime = {
-                    title: resultTitle['english'],
-                    image: item.bannerImage,
-                }
-                if(mapAnime.image == null){
+                if(item.coverImage.extraLarge !== null){
+
+                    let resultTitle = item.title
+                    let resultImage = item.coverImage
+                    let mapAnime = {
+                        title: resultTitle['english'],
+                        image: resultImage['extraLarge'],
+                        type: "anime",
+                        id: item.id
+                    }
+                    topAnimesData.push(mapAnime)
+                }else{
                     console.log('No image')
+                    let resultTitle = item.title
                     let mapAnime = {
                         title: resultTitle['english'],
                         image: 'https://media.istockphoto.com/id/1357365823/vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo.jpg?s=612x612&w=0&k=20&c=PM_optEhHBTZkuJQLlCjLz-v3zzxp-1mpNQZsdjrbns=',
+                        id: item.id,
+                        type: "anime"
                     }
                     topAnimesData.push(mapAnime)
                 }
-                topAnimesData.push(mapAnime);
             }
             catch(err){
-                console.log('error')
+                console.log(err)
             }
         })
         return topAnimesData;
+    }
+
+    function navigate(item){
+        navigation.navigate("MovieDetail",{
+            name: item.title,
+            type: item.type,
+            id: item.id,
+            image: item.image,
+            release_date: item.release_date
+        })
     }
 
 
@@ -148,7 +195,7 @@ function TrendScreen ({ navigation }){
         return(
             <View style={{justifyContent: 'center',}}>
                     <TouchableOpacity>
-                    <Image style={{width:96, height:100, borderRadius: 13, borderWidth: 2, borderColor:'#6541F5', alignItems: 'center',}} source={{uri: `${item.image}`}} />
+                    <Image style={{width:96, height:100, borderRadius: 13, borderWidth: 0.5, borderColor:'#6541F5', alignItems: 'center',}} source={{uri: `${item.image}`}} />
                     </TouchableOpacity>
                     <Text style={{color:'white', fontWeight: 'bold',}}>{item.title}</Text>
             </View>
@@ -158,8 +205,8 @@ function TrendScreen ({ navigation }){
     function renderItem2({ item }){
         return(
             <View style={{justifyContent: 'center',}}>
-                    <TouchableOpacity>
-                    <Image style={{width:328, height:190, borderRadius: 13, borderWidth: 2, borderColor:'#6541F5', alignItems: 'center'  }} source={{uri: `${item.image}`}} />
+                    <TouchableOpacity onPress={() => navigate(item)}>
+                    <Image style={{width:328, height:190, borderRadius: 13, borderWidth: 0.5, borderColor:'#6541F5', alignItems: 'center'  }} source={{uri: `${item.image}`}} />
                     </TouchableOpacity>
                     <Text style={{color:'white', fontWeight: 'bold',}}>{item.title}</Text>
             </View>
@@ -171,7 +218,7 @@ function TrendScreen ({ navigation }){
                     <ScrollView>
                     <View style={{flexDirection:'row',justifyContent:'space-between', marginBottom:20,alignItems:'center',}}>
                         <View style={{flexDirection:'column', display:'flex',}}>
-                        <Title>DAY Trends</Title>
+                        <Title>Day Trends</Title>
                         <SubTitle style={{marginBottom: -10, marginRight: 150}}>Home</SubTitle>
                         </View>
                     </View>
@@ -193,60 +240,22 @@ function TrendScreen ({ navigation }){
                         <Feather name="search" size={20} color="#C6C6C6" style={{marginRight: 5}} />
                     </View> 
 
-                    <View style={{flexDirection: 'row', justifyContent: 'space-between', marginTop: 10}}>
-                        <GoogleSubmit style={{flexDirection: 'row',}}>
+                    <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 20}}>
+                        <GoogleSubmit style={{marginRight: 50}} onPress={() => navigation.navigate('GoogleTrendys')}>
                             <Image  
                             source={require('../../assets/Bitcoin.png')}
                             style={{width:35, height:35}}
                             />
                         </GoogleSubmit>
 
-                        <FacebookSubmit style={{flexDirection: 'row'}}>
+                        <FacebookSubmit onPress={() => navigation.navigate('FacebookTrendys')} style={{flexDirection: 'row'}}>
                             <Icon name="facebook" color="white" size={35}  />
                         </FacebookSubmit> 
 
-                        <TwitterSubmit style={{flexDirection: 'row'}}>
+                        <TwitterSubmit style={{marginLeft: 50}}  onPress={() => navigation.navigate('TwitterTrendys')}>
                             <Icon name="twitter" color="white" size={35}  />
                         </TwitterSubmit> 
-                        
-                        <TikTokSubmit style={{flexDirection: 'row'}}>
-                            <Icon name="tiktok" color="black" size={35} />
-                        </TikTokSubmit> 
-
-                        <YoutubeSubmit style={{flexDirection: 'row'}}>
-                            <Icon name="youtube" color="white" size={35}  />
-                        </YoutubeSubmit> 
-                    </View>
-
-                    <View
-                    style={{
-                        marginTop: 30,
-                    }}
-                    >
-                        <View
-                        style={{
-                            marginVertical: 15,
-                            flexDirection: 'row',
-                            justifyContent: 'space-between',
-                        }}
-                        >
-                            <Text style={{color:'white', fontFamily: 'Montserrat_500Medium', fontSize:16}}>Catalog</Text>
-                            <SeeAll>
-                            <Text style={{color:'purple', fontFamily: 'Montserrat_500Medium', fontSize:16, textDecorationLine: 'underline'}}>See All</Text>
-                            </SeeAll>
-                        </View>
-
-                        <Carousel 
-                            data={catalogData}
-                            renderItem={renderItem.bind(this)}
-                            sliderWidth={400}
-                            itemWidth={100}
-                            useScrollView={true}
-                            enableSnap={true}
-                            loop={true}
-                            loopClonesPerSide={4}
-                            
-                        />
+                    
                     </View>
 
                     <View
@@ -289,7 +298,7 @@ function TrendScreen ({ navigation }){
                             justifyContent: 'space-between',
                         }}
                         >
-                            <Text style={{color:'white', fontFamily: 'Montserrat_500Medium', fontSize:16}}>Top Movies</Text>
+                            <Text style={{color:'white', fontFamily: 'Montserrat_500Medium', fontSize:16}}>Top Animes</Text>
                         </View>
 
                         <Carousel 
@@ -304,6 +313,36 @@ function TrendScreen ({ navigation }){
                             
                         />
                     </View>
+                    
+                    <View
+                    style={{
+                        marginTop: 30,
+                    }}
+                    >
+                        <View
+                        style={{
+                            marginVertical: 15,
+                            flexDirection: 'row',
+                            justifyContent: 'space-between',
+                        }}
+                        >
+                            <Text style={{color:'white', fontFamily: 'Montserrat_500Medium', fontSize:16}}>Top TV Show</Text>
+                        </View>
+
+                        <Carousel 
+                            data={mapTvShow()}
+                            renderItem={renderItem2.bind(this)}
+                            sliderWidth={400}
+                            itemWidth={350}
+                            useScrollView={true}
+                            enableSnap={true}
+                            loop={true}
+                            loopClonesPerSide={4}
+                            
+                        />
+                    </View>
+                    
+                    
                        
                         <View
                         style={{
@@ -311,78 +350,8 @@ function TrendScreen ({ navigation }){
                             flexDirection: 'column',
                         }}
                         >
-                            <Image 
-                            style={{width: 30, height: 30, marginRight: -60}}
-                            />
-                            <Title>Affairs of the Day</Title>
-                            <View>
-                                <View style={{
-                                    width: 312,
-                                    height: 26,
-                                    backgroundColor: '#0D0D1F',
-                                    borderRadius: 10,
-                                    marginTop: 5
-                                }}
-                                ></View>
-                                <View style={{
-                                    width: 312,
-                                    height: 26,
-                                    backgroundColor: '#0D0D1F',
-                                    borderRadius: 10,
-                                    marginTop: 5
-                                }}
-                                ></View>
-                                <View style={{
-                                    width: 312,
-                                    height: 26,
-                                    backgroundColor: '#0D0D1F',
-                                    borderRadius: 10,
-                                    marginTop: 5
-                                }}
-                                ></View>
-                                <View style={{
-                                    width: 312,
-                                    height: 26,
-                                    backgroundColor: '#0D0D1F',
-                                    borderRadius: 10,
-                                    marginTop: 5
-                                }}
-                                ></View>
-                                <View style={{
-                                    width: 312,
-                                    height: 26,
-                                    backgroundColor: '#0D0D1F',
-                                    borderRadius: 10,
-                                    marginTop: 5
-                                }}
-                                ></View>
-                                <View style={{
-                                    width: 312,
-                                    height: 26,
-                                    backgroundColor: '#0D0D1F',
-                                    borderRadius: 10,
-                                    marginTop: 5
-                                }}
-                                ></View>
-                                <View style={{
-                                    width: 312,
-                                    height: 26,
-                                    backgroundColor: '#0D0D1F',
-                                    borderRadius: 10,
-                                    marginTop: 5
-                                }}
-                                ></View>
-                                <View style={{
-                                    width: 312,
-                                    height: 26,
-                                    backgroundColor: '#0D0D1F',
-                                    borderRadius: 10,
-                                    marginTop: 5
-                                }}
-                                ></View>
-                            </View>
-                        </View>
-
+                    
+                        </View>                   
                     </ScrollView>
                 </Container>
     )

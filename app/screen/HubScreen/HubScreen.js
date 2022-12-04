@@ -33,8 +33,8 @@ function HubScreen( navigation ){
                             backgroundColor: '#16293E',
                             color: '#FFFFFF',
                         },
-                        tabBarInactiveTintColor: '#fff',
-                        tabBarActiveTintColor: 'purple'
+                        tabBarInactiveTintColor: 'gray',
+                        tabBarActiveTintColor: 'white'
                     }}
                 >  
                     <Tab.Screen name="ForgotPassword" component={Homepage}

@@ -24,23 +24,69 @@ import  Feather  from 'react-native-vector-icons/Feather'
 import Homepage from '../Homepage/Homepage';
 import ProfileScreen from '../ProfileScreen/ProfileScreen';
 import { useEffect, useState } from "react";
+import { IconButton, MD3Colors } from 'react-native-paper';
+import ToastManager, { Toast } from 'toastify-react-native'
+
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 function  Signin({ navigation }) {
     const [login, setLogin] = useState("")
+    const [passwordShown, setPasswordShown] = useState(true)
     const [password, setPassword] = useState("")
+    const [email, setEmail] = useState("")
 
-    function validLogin(){
+    const togglePassword = () => {
+        setPasswordShown(!passwordShown);
+    }
+
+    function validateLogin(){
         navigation.navigate('HubScreen')
     }
+
+    function emailValid(){
+        let res = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (res.test(email)) {
+            return true
+        } else {
+            console.log('Email not valid')
+            Toast.error('Email not valid')
+
+        }
+    }
+
+    function passwordValid() {
+        let res = /(?=.*[A-Z])(?=.*[!@#\$%])/;
+        if (res.test(password)) {
+            return true
+        } else {
+            console.log('Example: Password123@')
+            Toast.error('Example: Password123@')
+            return false
+        }
+    }
+
+    const sleep = (duration) => {
+        return new Promise(resolve => setTimeout(resolve, duration));
+    } 
+
+    function ValidateLogin(){
+        if(/*emailValid() && passwordValid()*/ true){
+            navigation.navigate('HubScreen')
+        }else{
+            Toast.error('User or password incorrect')
+        }
+    }
+
+
 
     return(
         
         <KeyboardView>
         <LinearGradient colors={['#16293E', '#1D1E32']}>
         <Container>
+            <ToastManager position="top"/>
             
             <Image
             source={require('../../assets/raposo.png')}
@@ -57,9 +103,10 @@ function  Signin({ navigation }) {
             >
             
             <Input
-                placeholderTextColor="#fff"
+                placeholderTextColor="grey"
                 placeholder="Username" 
-                value = {login} 
+                onChangeText={setEmail}
+                value={email} 
             >
             </Input>
             <Feather name="user" size={30} color="white" style={{position: 'absolute', right: 15, marginTop: 14}} />
@@ -72,18 +119,25 @@ function  Signin({ navigation }) {
             }}
             >
             <Input
-                placeholderTextColor="#fff"
-                secureTextEntry={true}
-                placeholder="Password"  
-                value = {password}     
-                       
-                ></Input>
-            <Icon name="eye-slash" size={30} color="white"  style={{position: 'absolute', right: 15, marginTop: 14, marginLeft: 7}} />
-            
-            
+                placeholderTextColor="grey"
+                secureTextEntry={passwordShown ? true : false}
+                placeholder="Password"
+                onChangeText={setPassword}
+                value={password}    
+            >
+            </Input>
+
+            <Icon
+            name={passwordShown ? "eye-slash" : "eye"} size={30} color="white" style={{position: 'absolute', right: -20, marginTop: 2}}
+            >
+            <IconButton
+                onPress={togglePassword}
+            >
+            </IconButton>
+            </Icon>
             </View>
             
-            <ButtonSubmit onPress={()=>validLogin()}>               
+            <ButtonSubmit onPress={()=>ValidateLogin()}>               
                 <TextSubmit>Login</TextSubmit>
             </ButtonSubmit>
             
@@ -95,25 +149,6 @@ function  Signin({ navigation }) {
             <RegisterSubmit onPress={() => navigation.navigate('Register')}>
                 <Text style={{textDecorationLine: 'underline', color: 'white', marginTop: 10, marginBottom: 20}}>You are not registered? Register Now!</Text>
             </RegisterSubmit>
-
-
-            <View
-            style={{
-                flexDirection: 'row'
-            }}
-            >
-            <GoogleSubmit style={{flexDirection: 'row', marginRight: 30}}>
-                <Image  
-                source={require('../../assets/Bitcoin.png')}
-                style={{width:35, height:35}}
-                imageStyle={{borderRadius: 25}}
-                />
-            </GoogleSubmit>
-
-            <FacebookSubmit style={{flexDirection: 'row'}}>
-                <Icon name="facebook" color="white" size={35}  />
-            </FacebookSubmit> 
-            </View>
             
         </Container>
         </LinearGradient>

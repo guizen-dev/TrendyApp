@@ -66,7 +66,7 @@ function ForgotPassword( {navigation} ){
                     onChangeText={setEmail}
                     value={email} >
                     </Input>
-                    <Feather name="mail" size={30} color="white" style={{position: 'absolute', top: 14, right: 15}} />
+                    <Feather name="mail" size={30} color='white' style={{position: 'absolute', top: 14, right: 15, flex: 1}} />
                 </View>    
 
                 <KeySubmit onPress={() => ValidateEmail()}>

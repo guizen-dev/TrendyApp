@@ -7,19 +7,22 @@ export const Container = styled.SafeAreaView`
 export const Title = styled.Text`
     color: #FFF;
     font-size: 36px;
-    font-weight: 700;
+    fontFamily: 'Montserrat_700Bold'
 `  
 
 export const Text = styled.Text`
+    color: #FFF;
     font-size: 16px;
+    left: 50px;
+    fontFamily: 'Montserrat_700Bold'
+    top: 41px;
 `
 
 export const SubTitle = styled.Text`
     color: #FFF;
-    font-size: 16px;
-    opacity: 0.4;
-    margin-bottom: 30px;
-    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    
 `
 
 export const Input = styled.TextInput`
@@ -57,3 +60,12 @@ export const ImageBackground = styled.ImageBackground`
 
 `
 
+export const HashtagText = styled.Text`
+    color: #FFF;
+    font-size: 16px;
+    font-weight: 400;
+    left: 150px;
+    top: 20px;
+    margin-Bottom: 12;
+    fontFamily: 'Montserrat_500Medium';
+`

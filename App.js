@@ -11,7 +11,14 @@ import ProfileScreen from "./app/screen/ProfileScreen/ProfileScreen";
 import HubScreen from './app/screen/HubScreen/HubScreen';
 import NotificationScreen from './app/screen/NotificationScreen/NotificationScreen';
 import TrendScreen from './app/screen/TrendScreen/TrendScreen';
-import Settings from './app/screen/Settings/Settings';
+import Catalog from './app/screen/Catalog/Catalog';
+import MovieDetail from './app/screen/MovieDetail/MovieDetail';
+import GoogleTrendys from './app/screen/GoogleTrendys/GoogleTrendys';
+import FacebookTrendys from './app/screen/FacebookTrendys/FacebookTrendys';
+import TiktokTrendys from './app/screen/TiktokTrendys/TiktokTrendys'
+import YoutubeTrendys from './app/screen/YoutubeTrendys/YoutubeTrendys';
+import TwitterTrendys from './app/screen/TwitterTrendys/TwitterTrendys';
+
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { 
   Montserrat_100Thin,
@@ -87,7 +94,13 @@ export default function App() {
           <Stack.Screen name='HubScreen' component={HubScreen} />
           <Stack.Screen name='TrendScreen' component={TrendScreen} />
           <Stack.Screen name='NotificationScreen' component={NotificationScreen} />
-          <Stack.Screen name='Settings' component={Settings} />
+          <Stack.Screen name='Catalog' component={Catalog} />
+          <Stack.Screen name='MovieDetail' component={MovieDetail}/>
+          <Stack.Screen name='GoogleTrendys' component={GoogleTrendys} />
+          <Stack.Screen name='TwitterTrendys' component={TwitterTrendys} />
+          <Stack.Screen name='FacebookTrendys' component={FacebookTrendys} />
+          <Stack.Screen name='TiktokTrendys' component={TiktokTrendys} />
+          <Stack.Screen name='YoutubeTrendys' component={YoutubeTrendys} />
         </Stack.Navigator>
       </NavigationContainer>
     </>

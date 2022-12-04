@@ -6,7 +6,13 @@ export const Container = styled.SafeAreaView`
 
 export const Title = styled.Text`
     color: #FFF;
-    font-size: 30px;
+    font-size: 22px;
+    font-weight: 700;
+`  
+
+export const Title2 = styled.Text`
+    color: #FFF;
+    font-size: 15px;
     font-weight: 700;
 `  
 
@@ -17,14 +23,21 @@ export const IconTitle = styled.Text`
 `  
 
 export const Text = styled.Text`
-    font-size: 20px;
-    color: #FFF;
-    font-weight: 400;
+    font-size: 12px;
+    color: #fff
 `
 
 export const SubTitle = styled.Text`
     color: #FFF;
-    font-size: 16px;
+    font-size: 22px;
+    opacity: 0.4;
+    margin-bottom: 30px;
+    text-align: center;
+`
+
+export const SubTitle2 = styled.Text`
+    color: #FFF;
+    font-size: 15px;
     opacity: 0.4;
     margin-bottom: 30px;
     text-align: center;
@@ -37,6 +50,12 @@ export const Input = styled.TextInput`
     border-radius: 9px;
     width: 90%;
 `
+
+export const ButtonLike = styled.TouchableOpacity`
+    width: 100px;
+    height: 100px;
+`
+
 export const Image = styled.Image`
 
 `

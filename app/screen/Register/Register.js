@@ -172,24 +172,6 @@ function Register({ navigation }) {
                         <Text style={{ textDecorationLine: 'underline', color: 'white', marginBottom: 25, }}>already have an account? Login now.</Text>
                     </LoginSubmit>
 
-                    <View
-                        style={{
-                            flexDirection: 'row'
-                        }}
-                    >
-                        <GoogleSubmit style={{ flexDirection: 'row', marginRight: 30 }}>
-                            <Image
-                                source={require('../../assets/Bitcoin.png')}
-                                style={{ width: 35, height: 35 }}
-                                imageStyle={{ borderRadius: 25 }}
-                            />
-                        </GoogleSubmit>
-
-                        <FacebookSubmit style={{ flexDirection: 'row' }}>
-                            <Icon name="facebook" color="white" size={35} />
-                        </FacebookSubmit>
-                    </View>
-
                 </Container>
             </LinearGradient>
         </KeyboardView>

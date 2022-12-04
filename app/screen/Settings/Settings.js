@@ -47,7 +47,7 @@ function Settings({ navigation }){
                 
             <Title style={{top:30, left: 130}}>Settings</Title>
             <View>
-             <Icon onPress={() => navigation.navigate('ProfileScreen')} name="arrow-left" size={30} color="white"  style={{position:'absolute', top: -5, left: 20}} />
+             <Icon onPress={() => navigation.navigate('HubScreen')} name="arrow-left" size={30} color="white"  style={{position:'absolute', top: -5, left: 20}} />
              </View>
 
              <Title style={{left: 20,fontSize: 20, top: 50}}>Account</Title>
@@ -115,16 +115,16 @@ function Settings({ navigation }){
                         width: 45,
                         height: 45,
                         borderRadius: 50,
-                        backgroundColor: '#fff',
+                        backgroundColor: '#0F0F13',
                         justifyContent: 'center',
                         alignItems: 'center',
                         marginRight: 30,
                     }}
                     >
-                        <Feather name="grid" color="#6541F5" size={30}/>
+                        <Feather name="globe" color="#FFF" size={30}/>
                     </TouchableOpacity>
 
-                        <Title style={{fontSize: 20, top: 8}}>Language</Title>
+                        <Text style={{top: 8}}>Language</Text>
 
                         <TouchableOpacity
                         style={{
@@ -134,7 +134,7 @@ function Settings({ navigation }){
                             backgroundColor: '#0F0F13',
                             justifyContent: 'center',
                             alignItems: 'center',
-                            marginLeft: '35%',
+                            marginLeft: '36%',
                         }}
                         >
                             <Feather name="chevron-right" color="white" size={30} />
@@ -146,8 +146,7 @@ function Settings({ navigation }){
                     style={{
                         width: '100%',
                         padding: 10,
-                        flexDirection: 'row',
-                        marginBottom: 25
+                        flexDirection: 'row'
                     }}
                     >
 
@@ -156,16 +155,16 @@ function Settings({ navigation }){
                         width: 45,
                         height: 45,
                         borderRadius: 50,
-                        backgroundColor: '#6541F5',
+                        backgroundColor: '#0F0F13',
                         justifyContent: 'center',
                         alignItems: 'center',
                         marginRight: 30,
                     }}
                     >
-                        <Feather name="bookmark" color="black" size={30}/>
+                        <Feather name="info" color="white" size={30}/>
                     </TouchableOpacity>
 
-                        <Title style={{fontSize: 20, top: 8}}>Help</Title>
+                        <Text style={{top: 8}}>Help</Text>
                         
                         <TouchableOpacity
                         style={{
@@ -175,7 +174,7 @@ function Settings({ navigation }){
                             backgroundColor: '#0F0F13',
                             justifyContent: 'center',
                             alignItems: 'center',
-                            marginLeft: '42%',
+                            marginLeft: '50%',
                         }}
                         >
                             <Feather name="chevron-right" color="white" size={30} />
@@ -200,16 +199,16 @@ function Settings({ navigation }){
                         width: 45,
                         height: 45,
                         borderRadius: 50,
-                        backgroundColor: '#fff',
+                        backgroundColor: '#0F0F13',
                         justifyContent: 'center',
                         alignItems: 'center',
                         marginRight: 30,
                     }}
                     >
-                        <Feather name="grid" color="#6541F5" size={30}/>
+                        <Feather name="clipboard" color="#FFF" size={30}/>
                     </TouchableOpacity>
 
-                        <Title style={{fontSize: 20, top: 8}}>Terms of Service</Title>
+                        <Text style={{ top: 8}}>Terms of Service</Text>
 
                         <TouchableOpacity
                         style={{
@@ -219,7 +218,7 @@ function Settings({ navigation }){
                             backgroundColor: '#0F0F13',
                             justifyContent: 'center',
                             alignItems: 'center',
-                            marginLeft: '35%',
+                            marginLeft: '18%',
                         }}
                         >
                             <Feather name="chevron-right" color="white" size={30} />
