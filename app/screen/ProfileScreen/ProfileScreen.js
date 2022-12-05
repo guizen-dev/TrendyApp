@@ -18,7 +18,7 @@ function ProfileScreen( {navigation} ){
     return(
         <Container style={{flex:1,backgroundColor:'#16293E'}}>
             <Ionicon name="exit-outline" color="red" size={30} style={{position: 'absolute', top: 42, left: 7}} onPress={() => navigation.navigate('Signin')}/>
-            <Title style={{fontSize: 26, marginVertical: '6%', marginLeft: '50%'}}>My profile</Title>
+            <Title style={{fontSize: 26, marginVertical: 20, left: 110}}>My profile</Title>
             <Ionicon name="pencil" color="white" size={30} style={{position: 'absolute', top: 42, right: 7}} onPress={() => navigation.navigate('EditProfile')}/>
             <View style={{flexDirection:'row',justifyContent:'space-between', marginBottom:20,alignItems:'center'}}>
                 
@@ -31,24 +31,17 @@ function ProfileScreen( {navigation} ){
                     
                 }}>
 
-                    <ImageBackground
-                        source={require('../../assets/Lindo2.png')}
+                    <Icon
+                        name="user" size={130} color="white"
                         style={{
-                            width:134, 
-                            height:134, 
-                            borderWidth: 3,
-                            borderRadius: 140,
-                            borderColor: '#6541F5',
-                            left: 90,
+                            width:100, 
+                            height:130, 
+                            left: 130,
                             bottom: 30}}
 
-                        imageStyle={{
-                            width:130, 
-                            height:130,
-                            borderRadius: 140, 
-                            top: -1,
-                            left: -1}}
-                    />
+                            
+                    ></Icon>
+                    
 
                     <View style={{alignItems: 'center',
                                   right: 100}}>
@@ -61,41 +54,14 @@ function ProfileScreen( {navigation} ){
                     </View>                
                 </View>
 
-                <View style={{marginVertical: 5, bottom: 30}}>
-                <Text style={{color:'#8C9199'}}>Description</Text>
-
-                <View style={{
-                    flexDirection: "row"
-                }}>
-                <Feather name="map-pin" size={20} color="#8C9199" style={{padding: 2}} />   
-                <Text style={{color:'#8C9199'}}>Cidade | AA</Text>
-                </View>
                 
-                <View style={{
-                    flexDirection: "row"
-                }}>
-                <Feather name="twitter" size={20} color="#8C9199" style={{padding: 2}} /> 
-                <Text style={{color:'#8C9199'}}>@arroba_twitter</Text>
-                </View>
-
-                
-                </View>
-
-                <View 
-                style={{
-                    marginVertical: -25,
-                    justifyContent: 'space-between',
-                    flexDirection: 'column',
-                    height: 200,
-                    right: 10
-                }}>
-
-                    <TouchableOpacity
+                <TouchableOpacity
                     style={{
                         width: '100%',
                         padding: 10,
                         flexDirection: 'row',
-                        marginBottom: 25
+                        marginBottom: 25,
+                        right: 10
                     }} onPress={() => navigation.navigate('Saved')}
                     >
 
@@ -131,58 +97,32 @@ function ProfileScreen( {navigation} ){
 
                     </TouchableOpacity>
 
+                <View 
+                style={{
+                    marginVertical: 25,
+                    justifyContent: 'space-between',
+                    flexDirection: 'column',
+                    height: 200,
+                    right: 10
+                }}>
+
+                    
+
                     <Title style={{left: 10,fontSize: 20, top: -20}}>Settings</Title>
 
                    
 
                     
 
-                    <View style={{bottom: 15}}>
-                    <TouchableOpacity style={{
-                        width: '100%',
-                        padding: 10,
-                        flexDirection: 'row',
-                        
-                    }}>
-
-                    <TouchableOpacity
-                    style={{
-                        width: 45,
-                        height: 45,
-                        borderRadius: 50,
-                        backgroundColor: '#0F0F13',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        marginRight: 30,
-                    }}
-                    >
-                        <Feather name="globe" color="#FFF" size={30}/>
-                    </TouchableOpacity>
-
-                        <Text style={{top: 10}}>Language</Text>
-
-                        <TouchableOpacity
-                        style={{
-                            width: 45,
-                            height: 45,
-                            borderRadius: 10,
-                            backgroundColor: '#0F0F13',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            marginLeft: '37%',
-                        }}
-                        >
-                            <Feather name="chevron-right" color="white" size={30} />
-                        </TouchableOpacity>
-
-                        </TouchableOpacity>
+                    <View style={{bottom: 120}}>
+                    
 
                         <TouchableOpacity
                     style={{
                         width: '100%',
                         padding: 10,
                         flexDirection: 'row'
-                    }}
+                    }} onPress={() => navigation.navigate('AboutUs')}
                     >
 
                     <TouchableOpacity
@@ -194,12 +134,12 @@ function ProfileScreen( {navigation} ){
                         justifyContent: 'center',
                         alignItems: 'center',
                         marginRight: 30,
-                    }}
+                    }} onPress={() => navigation.navigate('AboutUs')}
                     >
                         <Feather name="info" color="white" size={30}/>
                     </TouchableOpacity>
 
-                        <Text style={{top: 10}}>Help</Text>
+                        <Text style={{top: 10}}>About Us</Text>
                         
                         <TouchableOpacity
                         style={{
@@ -209,8 +149,8 @@ function ProfileScreen( {navigation} ){
                             backgroundColor: '#0F0F13',
                             justifyContent: 'center',
                             alignItems: 'center',
-                            marginLeft: '52%',
-                        }}
+                            marginLeft: '40%',
+                        }} onPress={() => navigation.navigate('AboutUs')}
                         >
                             <Feather name="chevron-right" color="white" size={30} />
                         </TouchableOpacity>
@@ -222,78 +162,13 @@ function ProfileScreen( {navigation} ){
                     
 
                     <View>
-                    <TouchableOpacity style={{
-                        width: '100%',
-                        padding: 10,
-                        flexDirection: 'row',           
-                    }}>
-
-                    <TouchableOpacity
-                    style={{
-                        width: 45,
-                        height: 45,
-                        borderRadius: 50,
-                        backgroundColor: '#0F0F13',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        marginRight: 30,
-                    }}
-                    >
-                        <Feather name="clipboard" color="#FFF" size={30}/>
-                    </TouchableOpacity>
-
-                        <Text style={{top: 10}}>Terms of Service</Text>
-
-                        <TouchableOpacity
-                        style={{
-                            width: 45,
-                            height: 45,
-                            borderRadius: 10,
-                            backgroundColor: '#0F0F13',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            marginLeft: '21%',
-                        }}
-                        >
-                            <Feather name="chevron-right" color="white" size={30} />
-                        </TouchableOpacity>
-
-                        </TouchableOpacity>
+                    
                     
 
                     </View>
                     
 
-                    </View>
-                    
-
-                    
-
-                    <View style={{
-                        flexDirection: 'row',
-                    }}>
-                    <TouchableOpacity
-                    style={{
-                        width: 110,
-                        height: 50,
-                        borderRadius: 7,
-                        backgroundColor: '#1D1C23',
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        padding: 1,
-                        left: 220,
-                        top: 25
-                    }}
-                    onPress={() => navigation.navigate('Signin')}
-                    >
-                        <SignoutrSubmit onPress={() => navigation.navigate('Signin')}>
-                        <Ionicon name="exit-outline" color="red" size={24} style={{position: 'absolute', top:-13, left: 7}}/>
-                        <Text style={{color: 'red', fontSize: 16, position: 'absolute', top:-12, left: 33}}>Sign out</Text>
-                        </SignoutrSubmit>
-                    </TouchableOpacity>
-                    </View>
-
+                    </View>                                                                      
                 </View>
         </Container>
     )

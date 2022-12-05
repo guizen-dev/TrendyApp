@@ -23,7 +23,12 @@ import { View,
     FacebookSubmit,
     YoutubeSubmit,
     TikTokSubmit,
-    TwitterSubmit
+    TwitterSubmit,
+    CenteredView,
+    modalView,
+    Button,
+    SubTitleCard,
+    Linha
  }  from './styles'
  import Icon from 'react-native-vector-icons/FontAwesome';
  import Feather from 'react-native-vector-icons/Feather'
@@ -42,48 +47,22 @@ import PasswordUpdated from '../PasswordUpdated/PasswordUpdated'
 import { Ionicons } from '@expo/vector-icons'
 import {LinearGradient} from 'expo-linear-gradient'
 import { useEffect, useState } from "react";
+import Modal from "react-native-modal";
 import axios from 'axios';
-
-const catalogData = [
-    {
-        title: '#Birds',
-        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1044428116174573628/Arara-Vermelha-2.jpg'
-    },
-    {
-        title: '#Foods',
-        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1044428115566399518/Que-comida-saudavel-que-nada-brasileiro-gosta-de-fast-food.webp'
-    },
-    {
-        title: '#FootBall',
-        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1044428114807230464/futebol-brasil.webp'
-    },
-    {
-        title: '#Gaming',
-        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1044428115155353690/Perifericos_Gamers.webp'
-    }
-];
-
-const topFilmsData = [
-    {
-        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1044428114555568199/blob-3r9t-1654861963.jpg'
-    },
-    {
-        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1044428114555568199/blob-3r9t-1654861963.jpg'
-    },
-    {
-        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1044428114555568199/blob-3r9t-1654861963.jpg'
-    },
-    {
-        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1044428114555568199/blob-3r9t-1654861963.jpg'
-    }
-];
-
 
 
 function TrendScreen ({ navigation }){
     const [trendyMovie, setTrendyMovie] = useState([]);
     const [trendyAnime, setTrendyAnime] = useState([]);
     const [tvShow, setTvShow] = useState([]);
+    const [isModalVisible, setModalVisible] = useState(false);
+    const [value, setValue] = useState("");
+    const [results, setResults] = useState([]);
+    const [error, setError] = useState(false);
+
+    const toggleModal = () => {
+        setModalVisible(!isModalVisible);
+      };
 
     useEffect(() => {
         axios.get('https://keikoapp.herokuapp.com/trendingMovies')
@@ -112,6 +91,20 @@ function TrendScreen ({ navigation }){
             console.log(err);
         });
     }, []);
+
+    const handleSearch = (keyword) => {
+        axios
+          .get(`https://keikoapp.herokuapp.com/generateReport?keyword=${keyword}&country=us&language=en`)
+          .then((response) => {
+            setResults(response.data), setError(false), console.log(results)
+          })
+          .catch((err) => {
+            console.log(err)
+            setError(true);
+            toggleModal
+          });
+          error ? console.log('Erro') : null
+    };
 
 
     let topFilmsData = [];
@@ -213,8 +206,201 @@ function TrendScreen ({ navigation }){
         );
     };
 
+    function WrapperComponent() {
+        return (
+          <View>
+            <Modal isVisible={isModalVisible}>
+                <ScrollView>
+                    <View style={{ flex: 1 , justifyContent: 'center', alignItems: 'center'}}>
+                        
+                        {
+                            error ? (
+                                <Title style={{color:"#FFF"}}>For some reason we can't find any result.</Title>
+                            ) : null
+                        }
+                        {
+                            results.normal ? (
+                                <>
+                                <Title style={{color:"#FFF"}}>Keywords Found</Title>
+                                <View>
+                                <View style={{margin:50, justifyContent:'center'}}>
+                                    <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor:'#16293E', width: 500, marginTop: 10}}>
+                                        <SubTitleCard style={{marginLeft: 75, marginTop:10}}>
+                                            Nomal
+                                        </SubTitleCard>
+                                    </View>
+                                        {
+
+                                        results.normal.map((item)=>{
+                                            return(
+                                                    <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor:'#16293E', width: 500, marginTop: 10}}>
+                                                        <SubTitle style={{marginLeft: 75}}>
+                                                            {item}
+                                                        </SubTitle>
+                                                    </View>
+                                            )
+                                        })
+                                    }
+                                </View>
+                                
+                                <View style={{margin:50, justifyContent:'center'}}>
+                                    <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor:'#16293E', width: 500, marginTop: 10}}>
+                                        <SubTitleCard style={{marginLeft: 75, marginTop:10}}>
+                                            Are
+                                        </SubTitleCard>
+                                    </View>
+                                        {
+
+                                        results.are.map((item)=>{
+                                            return(
+                                                    <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor:'#16293E', width: 500, marginTop: 10}}>
+                                                        <SubTitle style={{marginLeft: 75}}>
+                                                            {item}
+                                                        </SubTitle>
+                                                    </View>
+                                            )
+                                        })
+                                    }
+                                </View>
+                                <View style={{margin:50, justifyContent:'center'}}>
+                                    <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor:'#16293E', width: 500, marginTop: 10}}>
+                                        <SubTitleCard style={{marginLeft: 75, marginTop:10}}>
+                                            How
+                                        </SubTitleCard>
+                                    </View>
+                                        {
+
+                                        results.how.map((item)=>{
+                                            return(
+                                                    <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor:'#16293E', width: 500, marginTop: 10}}>
+                                                        <SubTitle style={{marginLeft: 75}}>
+                                                            {item}
+                                                        </SubTitle>
+                                                    </View>
+                                            )
+                                        })
+                                    }
+                                </View>
+                                <View style={{margin:50, justifyContent:'center'}}>
+                                    <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor:'#16293E', width: 500, marginTop: 10}}>
+                                        <SubTitleCard style={{marginLeft: 75, marginTop:10}}>
+                                            Which
+                                        </SubTitleCard>
+                                    </View>
+                                        {
+
+                                        results.which.map((item)=>{
+                                            return(
+                                                    <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor:'#16293E', width: 500, marginTop: 10}}>
+                                                        <SubTitle style={{marginLeft: 75}}>
+                                                            {item}
+                                                        </SubTitle>
+                                                    </View>
+                                            )
+                                        })
+                                    }
+                                </View>
+                                <View style={{margin:50, justifyContent:'center'}}>
+                                    <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor:'#16293E', width: 500, marginTop: 10}}>
+                                        <SubTitleCard style={{marginLeft: 75, marginTop:10}}>
+                                            Where
+                                        </SubTitleCard>
+                                    </View>
+                                        {
+
+                                        results.where.map((item)=>{
+                                            return(
+                                                    <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor:'#16293E', width: 500, marginTop: 10}}>
+                                                        <SubTitle style={{marginLeft: 75}}>
+                                                            {item}
+                                                        </SubTitle>
+                                                    </View>
+                                            )
+                                        })
+                                    }
+                                </View>
+                                <View style={{margin:50, justifyContent:'center'}}>
+                                    <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor:'#16293E', width: 500, marginTop: 10}}>
+                                        <SubTitleCard style={{marginLeft: 75, marginTop:10}}>
+                                            Who
+                                        </SubTitleCard>
+                                    </View>
+                                        {
+
+                                        results.who.map((item)=>{
+                                            return(
+                                                    <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor:'#16293E', width: 500, marginTop: 10}}>
+                                                        <SubTitle style={{marginLeft: 75}}>
+                                                            {item}
+                                                        </SubTitle>
+                                                    </View>
+                                            )
+                                        })
+                                    }
+                                </View>
+                                <View style={{margin:50, justifyContent:'center'}}>
+                                    <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor:'#16293E', width: 500, marginTop: 10}}>
+                                        <SubTitleCard style={{marginLeft: 75, marginTop:10}}>
+                                            Why
+                                        </SubTitleCard>
+                                    </View>
+                                        {
+
+                                        results.why.map((item)=>{
+                                            return(
+                                                    <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor:'#16293E', width: 500, marginTop: 10}}>
+                                                        <SubTitle style={{marginLeft: 75}}>
+                                                            {item}
+                                                        </SubTitle>
+                                                    </View>
+                                            )
+                                        })
+                                    }
+                                </View>
+                                <View style={{margin:50, justifyContent:'center'}}>
+                                    <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor:'#16293E', width: 500, marginTop: 10}}>
+                                        <SubTitleCard style={{marginLeft: 75, marginTop:10}}>
+                                            When
+                                        </SubTitleCard>
+                                    </View>
+                                        {
+
+                                        results.when.map((item)=>{
+                                            return(
+                                                    <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor:'#16293E', width: 500, marginTop: 10}}>
+                                                        <SubTitle style={{marginLeft: 75}}>
+                                                            {item}
+                                                        </SubTitle>
+                                                    </View>
+                                            )
+                                        })
+                                    }
+                                </View>
+
+
+
+
+                                </View>
+                                </>
+                            ) : null
+                        }
+                    
+                        <Button title='Close' onPress={toggleModal} />
+                    </View>
+                </ScrollView>
+            </Modal>
+          </View>
+        );
+      }
+
+      const handleClick = () => {
+        handleSearch(value);
+      };
+
     return(
                 <Container style={{flex:1,backgroundColor:'#16293E'}}>
+                    {WrapperComponent()}
+
                     <ScrollView>
                     <View style={{flexDirection:'row',justifyContent:'space-between', marginBottom:20,alignItems:'center',}}>
                         <View style={{flexDirection:'column', display:'flex',}}>
@@ -227,7 +413,7 @@ function TrendScreen ({ navigation }){
                     </View>
                     
 
-                        <View
+                    <View
                     style={{
                         flexDirection: 'row',
                         borderColor: '#7D4192',
@@ -240,8 +426,15 @@ function TrendScreen ({ navigation }){
                         alignItems:'center',
                     }}
                     >   
-                        <Input placeholder="Type a Website URL" placeholderTextColor="grey"/>
-                        <Feather name="search" size={20} color="#C6C6C6" style={{marginRight: 5}} />
+                        <Input
+                            placeholder="Type a Website URL"
+                            placeholderTextColor="grey"
+                            onChangeText={setValue}
+                            value={value}    
+                        />
+                        <TouchableOpacity onPress={() => console.log('ok')}>                         
+                            <Feather name="search" size={20} color="#C6C6C6" style={{marginRight: 5}} onPress={(handleClick)}/>
+                        </TouchableOpacity>
                     </View> 
 
                     <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 20}}>

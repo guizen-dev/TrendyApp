@@ -72,7 +72,7 @@ function  Signin({ navigation }) {
     } 
 
     function ValidateLogin(){
-        if(/*emailValid() && passwordValid()*/ true){
+        if(emailValid() && passwordValid()){
             navigation.navigate('HubScreen')
         }else{
             Toast.error('User or password incorrect')
@@ -129,10 +129,9 @@ function  Signin({ navigation }) {
 
             <Icon
             name={passwordShown ? "eye-slash" : "eye"} size={30} color="white" style={{position: 'absolute', right: -20, marginTop: 2}}
+            onPress={togglePassword}
             >
             <IconButton
-                onPress={togglePassword}
-                style={{marginleft: 5}}
             >
             </IconButton>
             </Icon>
@@ -159,9 +158,4 @@ function  Signin({ navigation }) {
     )
 }
 
-export default Signin;
-
-
-
-
-
+export default Signin

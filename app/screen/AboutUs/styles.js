@@ -7,9 +7,8 @@ export const Container = styled.SafeAreaView`
 
 export const Title = styled.Text`
 color: #FFF;
-font-size: 26px;
+font-size: 15px;
 font-Family: Montserrat_700Bold;
-align-items: center;
 `  
 
 export const Text = styled.Text`
@@ -17,23 +16,27 @@ export const Text = styled.Text`
     color: #FFF;
     font-size: 16px;
     margin-bottom: 3px;
+    margin-top: 30px;
+    margin-left: 10px;
     font-weight: 400;
     line-height: 22px;
-    font-Family: Montserrat_400Regular;
+    font-Family: Montserrat_500Medium;
 `
 
 export const SubTitle = styled.Text`
-font-size: 20px;
+font-size: 15px;
 color: #868C9B;
 font-Family: Montserrat_500Medium;
 `
 
 export const Input = styled.TextInput`
     
-    color: #fff;
-    font-size: 15px;
-    border-radius: 9px;
-    width: 90%;
+color: #FFF;
+font-size: 16px;
+margin-bottom: 3px;
+font-weight: 400;
+line-height: 22px;
+font-Family: Montserrat_400Regular;
 `
 export const Image = styled.Image`
 
@@ -65,3 +68,5 @@ export const ImageBackground = styled.ImageBackground`
 export const SignoutrSubmit = styled.TouchableOpacity`
     
 `
+
+

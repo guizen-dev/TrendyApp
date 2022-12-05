@@ -9,7 +9,6 @@ export const Title = styled.Text`
 color: #FFF;
 font-size: 26px;
 font-Family: Montserrat_700Bold;
-align-items: center;
 `  
 
 export const Text = styled.Text`
@@ -30,10 +29,12 @@ font-Family: Montserrat_500Medium;
 
 export const Input = styled.TextInput`
     
-    color: #fff;
-    font-size: 15px;
-    border-radius: 9px;
-    width: 90%;
+color: #FFF;
+font-size: 16px;
+margin-bottom: 3px;
+font-weight: 400;
+line-height: 22px;
+font-Family: Montserrat_400Regular;
 `
 export const Image = styled.Image`
 
@@ -65,3 +66,5 @@ export const ImageBackground = styled.ImageBackground`
 export const SignoutrSubmit = styled.TouchableOpacity`
     
 `
+
+

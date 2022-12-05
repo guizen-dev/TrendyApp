@@ -21,6 +21,14 @@ export const SubTitle = styled.Text`
     margin-bottom: 30px;
     text-align: center;
 `
+export const SubTitleCard = styled.Text`
+    color: #FFF;
+    font-size: 22px;
+    margin-bottom: 30px;
+    text-align: center;
+    fontFamily: 'Montserrat_500Medium'
+    
+`
 
 export const Input = styled.TextInput`
     
@@ -29,6 +37,13 @@ export const Input = styled.TextInput`
     border-radius: 9px;
     width: 90%;
 `
+export const Button = styled.Button`
+    backgroundColor: #6541F5;
+    border-radius: 28px;
+    align-items: center;
+
+`
+
 export const Image = styled.Image`
 
 `
@@ -104,3 +119,14 @@ export const YoutubeSubmit = styled.TouchableOpacity`
     box-shadow: 0px 20px 60px rgba(55, 62, 125, 0.05);
     border-radius: 30px;
 `
+export const CenteredView = styled.View`
+flex: 1;
+justifyContent: 'center';
+alignItems: 'center';
+marginTop: 22;
+`
+
+export const Linha = styled.View`
+border-bottom: 5px solid white;
+
+` 

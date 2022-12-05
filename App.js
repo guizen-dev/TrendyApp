@@ -13,11 +13,13 @@ import NotificationScreen from './app/screen/NotificationScreen/NotificationScre
 import TrendScreen from './app/screen/TrendScreen/TrendScreen';
 import Catalog from './app/screen/Catalog/Catalog';
 import MovieDetail from './app/screen/MovieDetail/MovieDetail';
+import EditProfile from './app/screen/EditProfile/EditProfile';
 import GoogleTrendys from './app/screen/GoogleTrendys/GoogleTrendys';
 import FacebookTrendys from './app/screen/FacebookTrendys/FacebookTrendys';
 import TiktokTrendys from './app/screen/TiktokTrendys/TiktokTrendys'
 import YoutubeTrendys from './app/screen/YoutubeTrendys/YoutubeTrendys';
 import TwitterTrendys from './app/screen/TwitterTrendys/TwitterTrendys';
+import AboutUs from './app/screen/AboutUs/AboutUs';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { 
@@ -96,11 +98,13 @@ export default function App() {
           <Stack.Screen name='NotificationScreen' component={NotificationScreen} />
           <Stack.Screen name='Catalog' component={Catalog} />
           <Stack.Screen name='MovieDetail' component={MovieDetail}/>
+          <Stack.Screen name='EditProfile' component={EditProfile} />
           <Stack.Screen name='GoogleTrendys' component={GoogleTrendys} />
           <Stack.Screen name='TwitterTrendys' component={TwitterTrendys} />
           <Stack.Screen name='FacebookTrendys' component={FacebookTrendys} />
           <Stack.Screen name='TiktokTrendys' component={TiktokTrendys} />
           <Stack.Screen name='YoutubeTrendys' component={YoutubeTrendys} />
+          <Stack.Screen name='AboutUs' component={AboutUs} />
         </Stack.Navigator>
       </NavigationContainer>
     </>
