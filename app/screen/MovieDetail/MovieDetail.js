@@ -261,7 +261,7 @@ function MovieDetail ({ navigation }){
         <Container style={{flex:1,backgroundColor:'#16293E'}}>
             <ScrollView>
                 <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 10, marginLeft: 50, position: 'relative'}}>
-                    <Feather onPress={() => navigation.navigate('Homepage')} name="arrow-left" size={30} color="white" />
+                    <Feather onPress={() => navigation.navigate('HubScreen')} name="arrow-left" size={30} color="white" />
                     <Title>Detail</Title>
                     <ButtonLike onPress={() =>{
                         setIsLiked(!isLiked)

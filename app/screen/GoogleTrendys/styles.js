@@ -17,9 +17,7 @@ export const Title2 = styled.Text`
 `  
 
 export const Text = styled.Text`
-    font-size: 12px;
-    color: #fff;
-    opacity: 0.5
+    font-size: 16px;
 `
 
 export const SubTitle = styled.Text`
@@ -111,4 +109,45 @@ export const Youtube = styled.TouchableOpacity`
     background: #FF0000;
     box-shadow: 0px 20px 60px rgba(55, 62, 125, 0.05);
     border-radius: 30px;
+`
+
+export const Billboard = styled.TouchableOpacity`
+    width: 54px;
+    height: 54px;
+    align-items: center;
+    justify-content: center;
+    background: #FF0000;
+    box-shadow: 0px 20px 60px rgba(55, 62, 125, 0.05);
+    border-radius: 30px;
+`
+
+export const GoogleSubmit = styled.TouchableOpacity`
+    width: 54px;
+    height: 54px;
+    align-items: center;
+    justify-content: center;
+    background: #FFFFFF;
+    box-shadow: 0px 20px 60px rgba(55, 62, 125, 0.05);
+    border-radius: 30px;
+`
+
+export const Resultado = styled.View`
+    background-color: #1F334D;
+    height: 50;
+    text-align: center;
+    border-style: solid;
+    border-color: #FFFF;
+    border-width: 0.5px;
+
+`
+export const Separador = styled.View`
+    display: flex;
+    flex-direction: row; 
+
+`
+
+export const SongTitle = styled.Text`
+    color: #FFF;
+    font-size: 10px;
+    opacity: 0.4;
 `

@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, Image, Input, Inp, ButtonSubmit, SubTitle, Google, Facebook, Title2, View, Text, Container, Title, Hamburger, TouchableOpacity, ImageBackground}  from './styles'
+import { ScrollView, Image, Input, Inp, ButtonSubmit, Resultado, Separador, SubTitle, Google, Facebook, Title2, View, Text, Container, Title, Hamburger, TouchableOpacity, ImageBackground}  from './styles'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather'
  import { useFonts } from 'expo-font';
@@ -35,6 +35,7 @@ function FacebookTrendys( navigation ){
 
     const [selectedCountry, setSelectedCountry] = useState();
     const [results, setResults] = useState([]);
+    const [value, setValue] = useState("");
     const [keyword, setKeyword] = useState([]);
 
     const pickerRef = useRef();
@@ -150,10 +151,10 @@ function FacebookTrendys( navigation ){
     ];
     
     const handleSearch = (keyword, selectedCountry) => {
-        api
-          .get(`/interests?query=${keyword}&country=${selectedCountry}`)
+        axios
+          .get(`https://keikoapp.herokuapp.com/interests?query=${keyword}&country=${selectedCountry}`)
           .then((response) => {
-            setResults(response.data);
+            setResults(response.data)
           })
           .catch((err) => {
             console.log(err)
@@ -196,7 +197,7 @@ function FacebookTrendys( navigation ){
         <Container style={{flex:1,backgroundColor:'#16293E', }}>
             <ScrollView>
             <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 20, marginLeft: 20, position: 'relative'}}>
-                <Feather onPress={() => navigation.navigate('Homepage')} name="arrow-left" size={30} color="white" />  
+            <Feather onPress={() => navigation.navigate('Homepage')} name="arrow-left" size={30} color="white" />
             </View>   
 
             <View style={{flexDirection:'row', margin: 30, alignItems: 'center'}}>
@@ -237,19 +238,68 @@ function FacebookTrendys( navigation ){
                 })}
                 </Picker>
             </View>    
-            <View style={{alignItems: 'center'}}>
+            <View style={{alignItems: 'center', marginBottom: 20}}>
             <ButtonSubmit onPress={() => handleSearch(keyword, selectedCountry)}>               
                 <Title2>
                     Search
                 </Title2>
             </ButtonSubmit>       
             </View>
-
-            <View>
-                <SubTitle style={{margin: 30, marginTop: 220}}>
-                    Insert a keyword and explore.
-                </SubTitle>
-            </View>
+            {
+                results.length > 0 ? (
+                <Title2 style={{marginLeft: 30, marginBottom: 10}}>
+                    {results.length} results found
+                </Title2>
+                ) : null
+            }
+            {
+                results.length > 0 ? (
+            <Resultado>
+                <Separador>
+                <Text style={{color:'#FFF', marginLeft: 15, fontWeight: 'bold', marginTop: 15}}>
+                        Audience Size
+                </Text>
+                <View>    
+                <Text style={{color:'#FFF', marginLeft: 60, fontWeight: 'bold', marginTop: 7}}>
+                        Name
+                </Text>
+                <Text style={{color:'#FFF', marginLeft: 60, marginTop: 2}}>
+                        Topic
+                </Text>
+                </View>
+                </Separador>
+            </Resultado>
+                ) : null
+            }
+            {
+                results.length > 0 ? (
+                    results.map((item, index)=>{
+                        return(
+                            <Resultado>
+                                <Separador>
+                                    <Text style={{color: '#FFF', marginLeft: 15}}>
+                                        {formatNumber(item.audience_size_upper_bound)}
+                                    </Text>
+                                    <View>
+                                    <Text style={{color:'#FFF', marginLeft: 110}}>
+                                        {item.name}
+                                    </Text>
+                                    <Text style={{marginLeft: 60, marginLeft: 110}}>
+                                        {item.topic}
+                                    </Text>
+                                    </View>
+                                </Separador>
+                            </Resultado>
+                        )
+                    })
+                ) : (
+                    <View>
+                        <SubTitle style={{margin: 30, marginTop: 220}}>
+                            Insert a keyword and explore.
+                        </SubTitle>
+                    </View>
+                )
+            }
             
         </ScrollView>
         </Container>

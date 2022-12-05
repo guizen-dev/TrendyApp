@@ -30,13 +30,20 @@ function HubScreen( navigation ){
                             margin: -20,
                             padding: 0,
                             position: 'absolute',
-                            backgroundColor: '#16293E',
+                            backgroundColor: '#1A2337',
                             color: '#FFFFFF',
+                            borderTopWidth: 0,
+                            borderRadius: 10,
+
+                            bottom: 14,
+                            left: 14,
+                            right: 14,
+                            elevation: 0
                         },
                         tabBarInactiveTintColor: 'gray',
                         tabBarActiveTintColor: 'white'
                     }}
-                >  
+>  
                     <Tab.Screen name="ForgotPassword" component={Homepage}
                      options={{
                          tabBarIcon: ({color, focused}) => (<Ionicon name="home-outline" color={color} size={30}/>)
@@ -52,7 +59,7 @@ function HubScreen( navigation ){
                     <Tab.Screen name="NotificationScreen" component={NotificationScreen}
                      options={{
                          tabBarIcon: ({color, focused}) => (<Feather name="bell" color={color} size={30}/>),
-                         tabBarBadge: 0,
+                         tabBarBadge: 7,
                      }}
                     />
 
@@ -67,4 +74,4 @@ function HubScreen( navigation ){
     )
 }
 
-export default HubScreen;
+export default HubScreen

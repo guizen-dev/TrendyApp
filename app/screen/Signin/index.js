@@ -132,6 +132,7 @@ function  Signin({ navigation }) {
             >
             <IconButton
                 onPress={togglePassword}
+                style={{marginleft: 5}}
             >
             </IconButton>
             </Icon>

@@ -34,8 +34,9 @@ const Tab = createBottomTabNavigator();
 function NotificationScreen ({ navigation }){
 
     return(
-        <Container style={{flex:1,backgroundColor:'#16293E'}}>
+        <Container style={{flex:1,backgroundColor:'#16293E', height: 10000}}>
             
+            <ScrollView>
             <View style={{flexDirection:'row',justifyContent:'space-between', marginBottom:20,alignItems:'center',}}>
                         <View style={{flexDirection:'column', display:'flex',}}>
                         <Title style={{marginVertical: 20, marginBottom: 20}}>Notifications</Title>
@@ -68,7 +69,91 @@ function NotificationScreen ({ navigation }){
                 <Feather name="info" color="white" size={30}/>
                 </TouchableOpacity>
 
-                    <Text styles={{left: 100, top: 20, position:'absolute', padding: 10}}>#guiguizen</Text>
+                    <Text styles={{left: 100, top: 20, position:'absolute', padding: 10}}>#ye</Text>
+                    <HashtagText styles={{}}>is now on trend!</HashtagText>
+                </View>
+
+                <View style={{top: 10,  marginVertical: 2}}>
+                <TouchableOpacity
+                    style={{
+                        width: 45,
+                        height: 45,
+                        borderRadius: 50,
+                        backgroundColor: '#6541F5',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        position: 'absolute',
+                        marginVertical: 20,
+                        top: 10
+                    }}
+                    >
+                <Feather name="info" color="white" size={30}/>
+                </TouchableOpacity>
+
+                    <Text styles={{left: 100, top: 20, position:'absolute', padding: 10}}>#friday</Text>
+                    <HashtagText styles={{}}>is now on trend!</HashtagText>
+                </View>
+
+                <View style={{top: 10,  marginVertical: 2}}>
+                <TouchableOpacity
+                    style={{
+                        width: 45,
+                        height: 45,
+                        borderRadius: 50,
+                        backgroundColor: '#6541F5',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        position: 'absolute',
+                        marginVertical: 20,
+                        top: 10
+                    }}
+                    >
+                <Feather name="info" color="white" size={30}/>
+                </TouchableOpacity>
+
+                    <Text styles={{left: 100, top: 20, position:'absolute', padding: 10}}>#juicewrld</Text>
+                    <HashtagText styles={{}}>is now on trend!</HashtagText>
+                </View>
+
+                <View style={{top: 10,  marginVertical: 2}}>
+                <TouchableOpacity
+                    style={{
+                        width: 45,
+                        height: 45,
+                        borderRadius: 50,
+                        backgroundColor: '#6541F5',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        position: 'absolute',
+                        marginVertical: 20,
+                        top: 10
+                    }}
+                    >
+                <Feather name="info" color="white" size={30}/>
+                </TouchableOpacity>
+
+                    <Text styles={{left: 100, top: 20, position:'absolute', padding: 10}}>#vlogmas</Text>
+                    <HashtagText styles={{}}>is now on trend!</HashtagText>
+                </View>
+
+                <View style={{top: 10,  marginVertical: 2}}>
+                <TouchableOpacity
+                    style={{
+                        width: 45,
+                        height: 45,
+                        borderRadius: 50,
+                        backgroundColor: '#6541F5',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        position: 'absolute',
+                        marginVertical: 20,
+                        top: 10
+                    }}
+                    >
+                <Feather name="info" color="white" size={30}/>
+                </TouchableOpacity>
+
+                    <Text styles={{left: 100, top: 20, position:'absolute', padding: 10}}>#adventcr</Text>
                     <HashtagText styles={{}}>is now on trend!</HashtagText>
                 </View>
                 
@@ -79,7 +164,7 @@ function NotificationScreen ({ navigation }){
                     top: 30,
                     marginVertical: 20,
                     marginBottom: 10,
-                    marginTop: 60
+                    marginTop: 20
                     }}>Last Week
                 </Title>
 
@@ -100,12 +185,57 @@ function NotificationScreen ({ navigation }){
                     <Feather name="info" color="white" size={30}/>
                     </TouchableOpacity>
 
-                    <Text styles={{left: 100, top: 20, position:'absolute', padding: 10}}>#Neymar</Text>
-                    <HashtagText styles={{}}>is now on trend!</HashtagText>
-                </View>           
-            
+                    <Text styles={{left: 100, top: 20, position:'absolute', padding: 10}}>#neymar</Text>
+                    <HashtagText>is now on trend!</HashtagText>
+                </View>      
+
+                <View style={{top: 10,  marginVertical: 2}}>
+                <TouchableOpacity
+                    style={{
+                        width: 45,
+                        height: 45,
+                        borderRadius: 50,
+                        backgroundColor: '#6541F5',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        position: 'absolute',
+                        marginVertical: 20,
+                        top: 10
+                    }}
+                    >
+                    <Feather name="info" color="white" size={30}/>
+                    </TouchableOpacity>
+
+                    <Text styles={{left: 100, top: 20, position:'absolute', padding: 10}}>#richarlison</Text>
+                    <HashtagText>is now on trend!</HashtagText>
+                </View>
+
+                <View style={{top: 10,  marginVertical: 2}}>
+                <TouchableOpacity
+                    style={{
+                        width: 45,
+                        height: 45,
+                        borderRadius: 50,
+                        backgroundColor: '#6541F5',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        position: 'absolute',
+                        marginVertical: 50,
+                        top: 10
+                    }}
+                    >
+                    <Feather name="info" color="white" size={30}/>
+                    </TouchableOpacity>
+
+                    <Text styles={{left: 100, top: 20, position:'absolute', padding: 10}}>#worldcup</Text>
+                    <HashtagText>is now on trend!</HashtagText>
+                </View>     
+
+                
+                </ScrollView>
+                    
         </Container>
     )
 }
 
-export default NotificationScreen;
+export default NotificationScreen

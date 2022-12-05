@@ -554,7 +554,7 @@ function TwitterTrendys( navigation ){
             <ScrollView>
                 
             <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 20, marginLeft: 20, position: 'relative'}}>
-                <Feather onPress={() => navigation.navigate('TrendScreen')} name="arrow-left" size={30} color="white" />  
+            <Feather onPress={() => navigation.navigate('TrendScreen')} name="arrow-left" size={30} color="white" />
             </View>   
 
             <View style={{flexDirection:'row', margin: 30, alignItems: 'center'}}>

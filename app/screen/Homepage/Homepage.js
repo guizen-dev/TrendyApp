@@ -43,24 +43,14 @@ const Drawer = createDrawerNavigator();
 
 const Tab = createBottomTabNavigator();
 
-const lastNewsData = [
-    {
-        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658104537124924/mano.webp'
-    },
-    {
-        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658104537124924/mano.webp'
-    },
-    {
-        image: 'https://cdn.discordapp.com/attachments/963977573241602138/1038658104537124924/mano.webp'
-    }
-];
-
 function Homepage({ navigation }){
 
     const [hastag, setHastag] = useState([]);
     const [trendyMovie, setTrendyMovie] = useState([]);
     const [trendyAnime, setTrendyAnime] = useState([]);
     const [tvShow, setTvShow] = useState([]);
+    const [posts, setPosts] = useState([]);
+    const rssFeeds = ["https://www.vox.com/rss/recode/index.xml"];
 
     useEffect(() => {
         axios.get('https://trendy-tiktok-api.herokuapp.com/trend-api/wsgeral/hastag')
@@ -95,11 +85,20 @@ function Homepage({ navigation }){
             console.log(err);
         });
 
+        rssFeeds.map((url) => {
+            axios.get(`https://api.rss2json.com/v1/api.json?rss_url=${url}`).then(
+              (data) => {
+                setPosts((prev) => [...data.data.items]);
+              }
+            );
+          });
+
     }, []);
     
     let moviesData = [];
     let tvshowData = [];
     let animesData = [];
+    let newsData = [];
 
     function mapTrendMovie(){
         let i = 0;
@@ -133,6 +132,23 @@ function Homepage({ navigation }){
             }
         })
         return tvshowData;
+    }
+
+    function mapNews(){
+        let i = 0;
+        posts.map((item)=>{
+            if (i < 5){
+                let mapNews = {
+                    title: item.title,
+                    image: item.thumbnail,
+                    type: "news",
+                    id: null
+                }
+                newsData.push(mapNews);
+                i++;
+            }
+        })
+        return newsData;
     }
 
     function mapTrendAnime(){
@@ -239,7 +255,7 @@ function Homepage({ navigation }){
                 </View>
 
                 <Carousel 
-                    data={lastNewsData}
+                    data={mapNews()}
                     renderItem={renderItem.bind(this)}
                     sliderWidth={400}
                     itemWidth={350}

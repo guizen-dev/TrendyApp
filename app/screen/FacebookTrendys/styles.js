@@ -132,3 +132,18 @@ export const Youtube = styled.TouchableOpacity`
     box-shadow: 0px 20px 60px rgba(55, 62, 125, 0.05);
     border-radius: 30px;
 `
+
+export const Resultado = styled.View`
+    background-color: #1F334D;
+    height: 50;
+    text-align: center;
+    border-style: solid;
+    border-color: #FFFF;
+    border-width: 0.5px;
+
+`
+export const Separador = styled.View`
+    display: flex;
+    flex-direction: row; 
+
+`

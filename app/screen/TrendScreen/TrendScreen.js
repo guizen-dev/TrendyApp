@@ -222,6 +222,10 @@ function TrendScreen ({ navigation }){
                         <SubTitle style={{marginBottom: -10, marginRight: 150}}>Home</SubTitle>
                         </View>
                     </View>
+                    <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',}}>
+                        <SubTitle style={{marginBottom: 5, marginTop: 70}}>Keyword Tool</SubTitle>
+                    </View>
+                    
 
                         <View
                     style={{
@@ -231,21 +235,18 @@ function TrendScreen ({ navigation }){
                         borderRadius: 24,
                         paddingHorizontal: 10,
                         paddingVertical: 8,
-                        marginTop: 60,
+                        marginTop: 0,
                         backgroundColor: '#373543',
                         alignItems:'center',
                     }}
                     >   
-                        <Input placeholder="Search" placeholderTextColor="#fff"/>
+                        <Input placeholder="Type a Website URL" placeholderTextColor="grey"/>
                         <Feather name="search" size={20} color="#C6C6C6" style={{marginRight: 5}} />
                     </View> 
 
                     <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 20}}>
                         <GoogleSubmit style={{marginRight: 50}} onPress={() => navigation.navigate('GoogleTrendys')}>
-                            <Image  
-                            source={require('../../assets/Bitcoin.png')}
-                            style={{width:35, height:35}}
-                            />
+                        <Icon name="music" color="black" size={35}  style={{marginRight: 6}}/>
                         </GoogleSubmit>
 
                         <FacebookSubmit onPress={() => navigation.navigate('FacebookTrendys')} style={{flexDirection: 'row'}}>
@@ -260,7 +261,7 @@ function TrendScreen ({ navigation }){
 
                     <View
                     style={{
-                        marginTop: 30,
+                        marginTop: 10,
                     }}
                     >
                         <View
