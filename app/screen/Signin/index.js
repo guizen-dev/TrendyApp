@@ -93,7 +93,7 @@ function  Signin({ navigation }) {
             source={require('../../assets/raposo.png')}
             style={{width:218, height:233}}
             />
-            <Title>Login</Title>
+            <Title>TrendyApp</Title>
             <SubTitle>Login to your Account</SubTitle>
 
             <View
