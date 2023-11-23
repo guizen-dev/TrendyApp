@@ -1,4 +1,4 @@
-<p align="center">
+![Moviedetail](https://github.com/guizen-dev/TrendyApp/assets/94479811/b8d9dd6e-105b-4969-8a0c-42b6b9cb5360)<p align="center">
   <img  src="https://user-images.githubusercontent.com/51789882/206223105-12a6b6c0-aee6-4bdb-ae3f-bbfe6afbc1c1.png" align="center">
 </p>
 <h1 align="center">TrendyAPP</h1>
@@ -48,26 +48,25 @@ Returns all params data of the website
 ## Preview
 
 ### Login
-![Login](assets/LoginPage.png)
+![LoginPage](https://github.com/guizen-dev/TrendyApp/assets/94479811/ee8f9f68-fdcf-4dbb-bf4d-4f5f32cdc3a7)
 
 ### Register 
-![Register](assets/Register.png)
+![Register](https://github.com/guizen-dev/TrendyApp/assets/94479811/148dd338-c458-4485-b2ee-0acd26bc2636)
 
 ### Home
-![Home](assets/Home.png)
+![Home (1)](https://github.com/guizen-dev/TrendyApp/assets/94479811/45f98c0f-524f-4016-bdc1-98bc0356df4d)
 
 ### Profile 
-![Profile](assets/Profile.png)
+![Profile](https://github.com/guizen-dev/TrendyApp/assets/94479811/3a970ce1-e5ce-40a8-b62b-dbcbc1c717d7)
 
 ### Notifications 
-![Notifications](assets/Notifications.png)
+![Notifications](https://github.com/guizen-dev/TrendyApp/assets/94479811/75612c8d-994e-4197-9044-fcfe8e2df609)
 
 ### DayTrendys
-![Entertainmant](assets/DayTrendys.png)
+![DayTrendys](https://github.com/guizen-dev/TrendyApp/assets/94479811/e595d773-22dc-495f-ad51-c012b349cb93)
 
 ### Detail Trendy 
-![Detail Trendy](assets/Moviedetail.png)
-
+![Moviedetail](https://github.com/guizen-dev/TrendyApp/assets/94479811/5ff93440-f731-4251-86f2-1c6e683e21e8)
 
 ### Concept, Prototyping and Apresentation
 Figma
