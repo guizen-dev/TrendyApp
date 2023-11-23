@@ -152,7 +152,7 @@ function FacebookTrendys( navigation ){
     
     const handleSearch = (keyword, selectedCountry) => {
         axios
-          .get(`https://keikoapp.herokuapp.com/interests?query=${keyword}&country=${selectedCountry}`)
+          .get(`https://trendy-app-api.onrender.com/interests?query=${keyword}&country=${selectedCountry}`)
           .then((response) => {
             setResults(response.data)
           })

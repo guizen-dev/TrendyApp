@@ -32,22 +32,10 @@ import { View,
  }  from './styles'
  import Icon from 'react-native-vector-icons/FontAwesome';
  import Feather from 'react-native-vector-icons/Feather'
- import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome'
-  import { useFonts } from 'expo-font';
   import Carousel from 'react-native-snap-carousel';
-  import Pagination from 'react-native-snap-carousel';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
-import ProfileScreen from '../ProfileScreen/ProfileScreen';
-import Signin from '../Signin/Signin';
-import Register from '../Register/Register';
-import ForgotPassword from '../ForgotPassword/ForgotPassword';
-import PasswordUpdated from '../PasswordUpdated/PasswordUpdated'
-import { Ionicons } from '@expo/vector-icons'
-import {LinearGradient} from 'expo-linear-gradient'
 import { useEffect, useState } from "react";
 import Modal from "react-native-modal";
+import { Skeleton } from '@rneui/themed';
 import axios from 'axios';
 
 
@@ -65,16 +53,16 @@ function TrendScreen ({ navigation }){
       };
 
     useEffect(() => {
-        axios.get('https://keikoapp.herokuapp.com/trendingMovies')
-        .then(response=> {
-            setTrendyMovie(response.data)
-            //console.log(responseData.data)
-        })
-        .catch(err => {
-            console.log(err);
-        });
+         axios.get('https://trendy-app-api.onrender.com/trendingMovies')
+         .then(response=> {
+             setTrendyMovie(response.data)
+             //console.log(responseData.data)
+         })
+         .catch(err => {
+             console.log(err);
+         });
 
-        axios.get('https://keikoapp.herokuapp.com/trendingAnimes')
+        axios.get('https://trendy-app-api.onrender.com/trendingAnimes')
         .then(response=> {
             setTrendyAnime(response.data)
             //console.log(responseData.data)
@@ -83,7 +71,7 @@ function TrendScreen ({ navigation }){
             console.log(err);
         });
 
-        axios.get('https://keikoapp.herokuapp.com/trendingTV')
+        axios.get('https://trendy-app-api.onrender.com/trendingTV')
         .then(response=> {
             setTvShow(response.data)
         })
@@ -94,7 +82,7 @@ function TrendScreen ({ navigation }){
 
     const handleSearch = (keyword) => {
         axios
-          .get(`https://keikoapp.herokuapp.com/generateReport?keyword=${keyword}&country=us&language=en`)
+          .get(`https://trendy-app-api.onrender.com/relatedQueries?keyword=${keyword}`)
           .then((response) => {
             setResults(response.data), setError(false), console.log(results)
           })
@@ -188,7 +176,7 @@ function TrendScreen ({ navigation }){
         return(
             <View style={{justifyContent: 'center',}}>
                     <TouchableOpacity>
-                    <Image style={{width:96, height:100, borderRadius: 13, borderWidth: 0.5, borderColor:'#6541F5', alignItems: 'center',}} source={{uri: `${item.image}`}} />
+                    <Image style={{width:'90%', height:200, borderRadius: 13, borderWidth: 0.5, borderColor:'#6541F5', alignItems: 'center',}} source={{uri: `${item.image}`}} />
                     </TouchableOpacity>
                     <Text style={{color:'white', fontWeight: 'bold',}}>{item.title}</Text>
             </View>
@@ -199,7 +187,7 @@ function TrendScreen ({ navigation }){
         return(
             <View style={{justifyContent: 'center',}}>
                     <TouchableOpacity onPress={() => navigate(item)}>
-                    <Image style={{width:328, height:190, borderRadius: 13, borderWidth: 0.5, borderColor:'#6541F5', alignItems: 'center'  }} source={{uri: `${item.image}`}} />
+                    <Image style={{width:'90%', height:190, borderRadius: 13, borderWidth: 0.5, borderColor:'#6541F5', alignItems: 'center'  }} source={{uri: `${item.image}`}} />
                     </TouchableOpacity>
                     <Text style={{color:'white', fontWeight: 'bold',}}>{item.title}</Text>
             </View>
@@ -225,7 +213,7 @@ function TrendScreen ({ navigation }){
                                 <View>
                                 <View style={{margin:50, justifyContent:'center'}}>
                                     <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor:'#16293E', width: 500, marginTop: 10}}>
-                                        <SubTitleCard style={{marginLeft: 75, marginTop:10}}>
+                                        <SubTitleCard style={{marginLeft: 100, marginTop:10}}>
                                             Nomal
                                         </SubTitleCard>
                                     </View>
@@ -234,7 +222,7 @@ function TrendScreen ({ navigation }){
                                         results.normal.map((item)=>{
                                             return(
                                                     <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor:'#16293E', width: 500, marginTop: 10}}>
-                                                        <SubTitle style={{marginLeft: 75}}>
+                                                        <SubTitle style={{marginLeft: 100}}>
                                                             {item}
                                                         </SubTitle>
                                                     </View>
@@ -245,7 +233,7 @@ function TrendScreen ({ navigation }){
                                 
                                 <View style={{margin:50, justifyContent:'center'}}>
                                     <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor:'#16293E', width: 500, marginTop: 10}}>
-                                        <SubTitleCard style={{marginLeft: 75, marginTop:10}}>
+                                        <SubTitleCard style={{marginLeft: 100, marginTop:10}}>
                                             Are
                                         </SubTitleCard>
                                     </View>
@@ -254,7 +242,7 @@ function TrendScreen ({ navigation }){
                                         results.are.map((item)=>{
                                             return(
                                                     <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor:'#16293E', width: 500, marginTop: 10}}>
-                                                        <SubTitle style={{marginLeft: 75}}>
+                                                        <SubTitle style={{marginLeft: 100}}>
                                                             {item}
                                                         </SubTitle>
                                                     </View>
@@ -264,7 +252,7 @@ function TrendScreen ({ navigation }){
                                 </View>
                                 <View style={{margin:50, justifyContent:'center'}}>
                                     <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor:'#16293E', width: 500, marginTop: 10}}>
-                                        <SubTitleCard style={{marginLeft: 75, marginTop:10}}>
+                                        <SubTitleCard style={{marginLeft: 100, marginTop:10}}>
                                             How
                                         </SubTitleCard>
                                     </View>
@@ -273,7 +261,7 @@ function TrendScreen ({ navigation }){
                                         results.how.map((item)=>{
                                             return(
                                                     <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor:'#16293E', width: 500, marginTop: 10}}>
-                                                        <SubTitle style={{marginLeft: 75}}>
+                                                        <SubTitle style={{marginLeft: 100}}>
                                                             {item}
                                                         </SubTitle>
                                                     </View>
@@ -283,7 +271,7 @@ function TrendScreen ({ navigation }){
                                 </View>
                                 <View style={{margin:50, justifyContent:'center'}}>
                                     <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor:'#16293E', width: 500, marginTop: 10}}>
-                                        <SubTitleCard style={{marginLeft: 75, marginTop:10}}>
+                                        <SubTitleCard style={{marginLeft: 100, marginTop:10}}>
                                             Which
                                         </SubTitleCard>
                                     </View>
@@ -292,7 +280,7 @@ function TrendScreen ({ navigation }){
                                         results.which.map((item)=>{
                                             return(
                                                     <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor:'#16293E', width: 500, marginTop: 10}}>
-                                                        <SubTitle style={{marginLeft: 75}}>
+                                                        <SubTitle style={{marginLeft: 100}}>
                                                             {item}
                                                         </SubTitle>
                                                     </View>
@@ -302,7 +290,7 @@ function TrendScreen ({ navigation }){
                                 </View>
                                 <View style={{margin:50, justifyContent:'center'}}>
                                     <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor:'#16293E', width: 500, marginTop: 10}}>
-                                        <SubTitleCard style={{marginLeft: 75, marginTop:10}}>
+                                        <SubTitleCard style={{marginLeft: 100, marginTop:10}}>
                                             Where
                                         </SubTitleCard>
                                     </View>
@@ -311,7 +299,7 @@ function TrendScreen ({ navigation }){
                                         results.where.map((item)=>{
                                             return(
                                                     <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor:'#16293E', width: 500, marginTop: 10}}>
-                                                        <SubTitle style={{marginLeft: 75}}>
+                                                        <SubTitle style={{marginLeft: 100}}>
                                                             {item}
                                                         </SubTitle>
                                                     </View>
@@ -321,7 +309,7 @@ function TrendScreen ({ navigation }){
                                 </View>
                                 <View style={{margin:50, justifyContent:'center'}}>
                                     <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor:'#16293E', width: 500, marginTop: 10}}>
-                                        <SubTitleCard style={{marginLeft: 75, marginTop:10}}>
+                                        <SubTitleCard style={{marginLeft: 100, marginTop:10}}>
                                             Who
                                         </SubTitleCard>
                                     </View>
@@ -330,7 +318,7 @@ function TrendScreen ({ navigation }){
                                         results.who.map((item)=>{
                                             return(
                                                     <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor:'#16293E', width: 500, marginTop: 10}}>
-                                                        <SubTitle style={{marginLeft: 75}}>
+                                                        <SubTitle style={{marginLeft: 100}}>
                                                             {item}
                                                         </SubTitle>
                                                     </View>
@@ -340,7 +328,7 @@ function TrendScreen ({ navigation }){
                                 </View>
                                 <View style={{margin:50, justifyContent:'center'}}>
                                     <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor:'#16293E', width: 500, marginTop: 10}}>
-                                        <SubTitleCard style={{marginLeft: 75, marginTop:10}}>
+                                        <SubTitleCard style={{marginLeft: 100, marginTop:10}}>
                                             Why
                                         </SubTitleCard>
                                     </View>
@@ -349,7 +337,7 @@ function TrendScreen ({ navigation }){
                                         results.why.map((item)=>{
                                             return(
                                                     <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor:'#16293E', width: 500, marginTop: 10}}>
-                                                        <SubTitle style={{marginLeft: 75}}>
+                                                        <SubTitle style={{marginLeft: 100}}>
                                                             {item}
                                                         </SubTitle>
                                                     </View>
@@ -359,7 +347,7 @@ function TrendScreen ({ navigation }){
                                 </View>
                                 <View style={{margin:50, justifyContent:'center'}}>
                                     <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor:'#16293E', width: 500, marginTop: 10}}>
-                                        <SubTitleCard style={{marginLeft: 75, marginTop:10}}>
+                                        <SubTitleCard style={{marginLeft: 100, marginTop:10}}>
                                             When
                                         </SubTitleCard>
                                     </View>
@@ -368,7 +356,7 @@ function TrendScreen ({ navigation }){
                                         results.when.map((item)=>{
                                             return(
                                                     <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor:'#16293E', width: 500, marginTop: 10}}>
-                                                        <SubTitle style={{marginLeft: 75}}>
+                                                        <SubTitle style={{marginLeft: 100}}>
                                                             {item}
                                                         </SubTitle>
                                                     </View>
@@ -433,7 +421,7 @@ function TrendScreen ({ navigation }){
                             value={value}    
                         />
                         <TouchableOpacity onPress={() => console.log('ok')}>                         
-                            <Feather name="search" size={20} color="#C6C6C6" style={{marginRight: 5}} onPress={(handleClick)}/>
+                            <Feather name="search" size={20} color="#C6C6C6" style={{marginRight: 5}} onPress={(handleClick, toggleModal)}/>
                         </TouchableOpacity>
                     </View> 
 
@@ -459,7 +447,7 @@ function TrendScreen ({ navigation }){
                     >
                         <View
                         style={{
-                            marginVertical: 15,
+                            marginVertical: 20,
                             flexDirection: 'row',
                             justifyContent: 'space-between',
                         }}
@@ -467,84 +455,112 @@ function TrendScreen ({ navigation }){
                             <Text style={{color:'white', fontFamily: 'Montserrat_500Medium', fontSize:16}}>Top Movies</Text>
                         </View>
 
-                        <Carousel 
-                            data={mapTrendMovie()}
-                            renderItem={renderItem2.bind(this)}
-                            sliderWidth={400}
-                            itemWidth={350}
-                            useScrollView={true}
-                            enableSnap={true}
-                            loop={true}
-                            loopClonesPerSide={4}
-                            
-                        />
+                        {
+                            trendyMovie.length > 0 && trendyMovie !== null ? (
+                            <Carousel 
+                                data={mapTrendMovie()}
+                                renderItem={renderItem2.bind(this)}
+                                sliderWidth={400}
+                                itemWidth={200}
+                                useScrollView={true}
+                                enableSnap={true}
+                                loop={true}
+                                loopClonesPerSide={4}
+                                activeSlideAlignment="start"
+                                
+                            />
+                            ) : (
+                                <>
+                                    <View style={{flexDirection: 'row', width: '100%', justifyContent: 'space-between'}}>
+                                        <Skeleton animation="pulse" style={{opacity: 0.2, width: '48%', height: 190, borderRadius: 10}}/>
+                                        <Skeleton animation="pulse" style={{opacity: 0.2, width: '48%', height: 190, borderRadius: 10}}/>
+                                    </View>
+                                </>
+                            )
+                        }
                     </View>
 
                     <View
                     style={{
-                        marginTop: 30,
+                        marginTop: 5,
                     }}
                     >
                         <View
                         style={{
-                            marginVertical: 15,
+                            marginVertical: 5,
                             flexDirection: 'row',
                             justifyContent: 'space-between',
                         }}
                         >
                             <Text style={{color:'white', fontFamily: 'Montserrat_500Medium', fontSize:16}}>Top Animes</Text>
                         </View>
-
-                        <Carousel 
-                            data={mapTrendAnime()}
-                            renderItem={renderItem2.bind(this)}
-                            sliderWidth={400}
-                            itemWidth={350}
-                            useScrollView={true}
-                            enableSnap={true}
-                            loop={true}
-                            loopClonesPerSide={4}
-                            
-                        />
+                        {
+                           trendyAnime.length > 0 && trendyMovie !== null ? ( 
+                               <Carousel 
+                                   data={mapTrendAnime()}
+                                   renderItem={renderItem2.bind(this)}
+                                   sliderWidth={400}
+                                   itemWidth={200}
+                                   useScrollView={true}
+                                   enableSnap={true}
+                                   loop={true}
+                                   loopClonesPerSide={4}
+                                   activeSlideAlignment="start"   
+                               />
+                            ) : (
+                                <>
+                                    <View style={{flexDirection: 'row', width: '100%', justifyContent: 'space-between'}}>
+                                        <Skeleton animation="pulse" style={{opacity: 0.2, width: '48%', height: 190, borderRadius: 10}}/>
+                                        <Skeleton animation="pulse" style={{opacity: 0.2, width: '48%', height: 190, borderRadius: 10}}/>
+                                    </View>
+                                </>
+                           )
+                        }
                     </View>
                     
                     <View
                     style={{
-                        marginTop: 30,
+                        marginTop: 5,
                     }}
                     >
                         <View
                         style={{
-                            marginVertical: 15,
+                            marginVertical: 5,
                             flexDirection: 'row',
                             justifyContent: 'space-between',
                         }}
                         >
                             <Text style={{color:'white', fontFamily: 'Montserrat_500Medium', fontSize:16}}>Top TV Show</Text>
                         </View>
-
-                        <Carousel 
-                            data={mapTvShow()}
-                            renderItem={renderItem2.bind(this)}
-                            sliderWidth={400}
-                            itemWidth={350}
-                            useScrollView={true}
-                            enableSnap={true}
-                            loop={true}
-                            loopClonesPerSide={4}
-                            
-                        />
+                        {
+                            tvShow.length > 0 && trendyMovie !== null ? (
+                                <Carousel 
+                                    data={mapTvShow()}
+                                    renderItem={renderItem2.bind(this)}
+                                    sliderWidth={400}
+                                    itemWidth={200}
+                                    useScrollView={true}
+                                    enableSnap={true}
+                                    loop={true}
+                                    loopClonesPerSide={4}
+                                    activeSlideAlignment="start" 
+                                />
+                            ) : (
+                                <>
+                                    <View style={{flexDirection: 'row', width: '100%', justifyContent: 'space-between'}}>
+                                        <Skeleton animation="pulse" style={{opacity: 0.2, width: '48%', height: 190, borderRadius: 10}}/>
+                                        <Skeleton animation="pulse" style={{opacity: 0.2, width: '48%', height: 190, borderRadius: 10}}/>
+                                    </View>
+                                </>
+                            )
+                        }
                     </View>
-                    
-                    
-                       
                         <View
                         style={{
                             marginBottom: 100,
                             flexDirection: 'column',
                         }}
                         >
-                    
                         </View>                   
                     </ScrollView>
                 </Container>

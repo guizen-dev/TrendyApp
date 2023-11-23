@@ -18,6 +18,20 @@ export const Text = styled.Text`
     top: 41px;
 `
 
+export const TextNotification = styled.Text`
+color: #FFF;
+    font-size: 16px;
+    fontFamily: 'Montserrat_700Bold';
+`
+
+export const HashtagTextComponent = styled.Text`
+    color: #FFF;
+    font-size: 16px;
+    font-weight: 400;
+    contFamily: 'Montserrat_500Medium';
+
+`
+
 export const SubTitle = styled.Text`
     color: #FFF;
     font-size: 18px;

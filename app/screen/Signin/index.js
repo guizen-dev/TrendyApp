@@ -59,7 +59,8 @@ function  Signin({ navigation }) {
     function passwordValid() {
         let res = /(?=.*[A-Z])(?=.*[!@#\$%])/;
         if (res.test(password)) {
-            return true
+        return true
+
         } else {
             console.log('Example: Password123@')
             Toast.error('Example: Password123@')

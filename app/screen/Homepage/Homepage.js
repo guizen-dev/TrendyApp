@@ -21,21 +21,12 @@ import { View,
     IconTitle
  }  from './styles'
  import axios from 'axios';
- import Icon from 'react-native-vector-icons/FontAwesome';
  import Feather from 'react-native-vector-icons/Feather'
 import { useFonts } from 'expo-font';
 import Carousel from 'react-native-snap-carousel';
-import Pagination from 'react-native-snap-carousel';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {LinearGradient} from 'expo-linear-gradient'
-import { NavigationContainer } from '@react-navigation/native';
-import ProfileScreen from '../ProfileScreen/ProfileScreen';
-import Signin from '../Signin/Signin';
-import Register from '../Register/Register';
-import ForgotPassword from '../ForgotPassword/ForgotPassword';
-import PasswordUpdated from '../PasswordUpdated/PasswordUpdated'
-import { Ionicons } from '@expo/vector-icons'
+import { Skeleton } from '@rneui/themed';
 import { useEffect, useState } from "react";
 
 
@@ -50,18 +41,20 @@ function Homepage({ navigation }){
     const [trendyAnime, setTrendyAnime] = useState([]);
     const [tvShow, setTvShow] = useState([]);
     const [posts, setPosts] = useState([]);
-    const rssFeeds = ["https://www.vox.com/rss/recode/index.xml"];
+    const rssFeeds = useState([]);
+    const rssFeedLink = ["https://cms.qz.com/feed"];
 
     useEffect(() => {
-        axios.get('https://trendy-tiktok-api.herokuapp.com/trend-api/wsgeral/hastag')
-        .then(responseData => {
-            setHastag(responseData.data)
-        })
-        .catch(err => {
-            console.log(err+' Hastag Err');
-        });
+    // api not working
+    //     axios.get('https://trendy-tiktok-api.herokuapp.com/trend-api/wsgeral/hastag')
+    //     .then(responseData => {
+    //         setHastag(responseData.data)
+    //     })
+    //     .catch(err => {
+    //         console.log(err+' Hastag Err');
+    //     });
 
-        axios.get('https://keikoapp.herokuapp.com/trendingMovies')
+        axios.get('https://trendy-app-api.onrender.com/trendingMovies')
         .then(response=> {
             setTrendyMovie(response.data)
         })
@@ -69,15 +62,15 @@ function Homepage({ navigation }){
             console.log(err);
         });
 
-        axios.get('https://keikoapp.herokuapp.com/trendingAnimes')
-        .then(response=> {
-            setTrendyAnime(response.data)
-        })
-        .catch(err => {
-            console.log(err);
-        });
+         axios.get('https://trendy-app-api.onrender.com/trendingAnimes')
+         .then(response=> {
+             setTrendyAnime(response.data)
+         })
+         .catch(err => {
+        //     console.log(err);
+         });
 
-        axios.get('https://keikoapp.herokuapp.com/trendingTV')
+        axios.get('https://trendy-app-api.onrender.com/trendingTV')
         .then(response=> {
             setTvShow(response.data)
         })
@@ -85,15 +78,16 @@ function Homepage({ navigation }){
             console.log(err);
         });
 
-        rssFeeds.map((url) => {
-            axios.get(`https://api.rss2json.com/v1/api.json?rss_url=${url}`).then(
-              (data) => {
-                setPosts((prev) => [...data.data.items]);
-              }
-            );
-          });
+         rssFeeds.map((url) => {
+             axios.get(`https://api.rss2json.com/v1/api.json?rss_url=${rssFeedLink}`).then(
+               (data) => {
+                 setPosts((prev) => [...data.data.items]);
+               }
+             );
+         });
 
     }, []);
+
     
     let moviesData = [];
     let tvshowData = [];
@@ -137,7 +131,7 @@ function Homepage({ navigation }){
     function mapNews(){
         let i = 0;
         posts.map((item)=>{
-            if (i < 5){
+            if (i < 10){
                 let mapNews = {
                     title: item.title,
                     image: item.thumbnail,
@@ -253,18 +247,24 @@ function Homepage({ navigation }){
                 >
                     <Text style={{color:'white', fontFamily: 'Montserrat_500Medium', fontSize:20}}>Last News</Text>
                 </View>
-
-                <Carousel 
-                    data={mapNews()}
-                    renderItem={renderItem.bind(this)}
-                    sliderWidth={400}
-                    itemWidth={350}
-                    useScrollView={true}
-                    enableSnap={true}
-                    loop={true}
-                    loopClonesPerSide={3}
-                            
-                />
+                {
+                    posts.length > 0 && posts !== null ? (
+                        <Carousel 
+                            data={mapNews()}
+                            renderItem={renderItem.bind(this)}
+                            sliderWidth={400}
+                            itemWidth={350}
+                            useScrollView={true}
+                            enableSnap={true}
+                            loop={true}
+                            loopClonesPerSide={3}
+                            activeSlideAlignment="start"
+                                    
+                        />
+                    ) : (
+                        <Skeleton animation="pulse" style={{opacity: 0.2, width: '100%', height: 150, borderRadius: 10}}/>
+                    )
+                }
 
                 <View style={{marginTop: 50,}}>
                     <Title style={{marginBottom: 30, marginTop: -30}}>Your Trendings</Title>
@@ -307,16 +307,28 @@ function Homepage({ navigation }){
                         <Text style={{color:'grey', fontFamily: 'Montserrat_500Medium', fontSize:16, textDecorationLine: 'underline'}}>See All</Text>
                         </SeeAll>
                     </View>
-
-                    <Carousel 
-                        data={mapTrendMovie()}
-                        renderItem={renderItem.bind(this)}
-                        sliderWidth={400}
-                        itemWidth={150}
-                        useScrollView={true}
-                        loop={true}
-                        loopClonesPerSide={4}
-                    />
+                    {
+                        trendyMovie.length > 0 && trendyMovie !== null ? (
+                            <Carousel 
+                                data={mapTrendMovie()}
+                                renderItem={renderItem.bind(this)}
+                                sliderWidth={400}
+                                itemWidth={150}
+                                useScrollView={true}
+                                loop={true}
+                                loopClonesPerSide={4}
+                                activeSlideAlignment="start"
+                            />
+                        ) : (
+                            <>
+                                <View style={{flexDirection: 'row', width: '100%', justifyContent: 'space-between'}}>
+                                    <Skeleton animation="pulse" style={{opacity: 0.2, width: '30%', height: 170, borderRadius: 10}}/>
+                                    <Skeleton animation="pulse" style={{opacity: 0.2, width: '30%', height: 170, borderRadius: 10}}/>
+                                    <Skeleton animation="pulse" style={{opacity: 0.2, width: '30%', height: 170, borderRadius: 10}}/>
+                                </View>
+                            </>
+                        )
+                    }
                 </View>
 
                 <View style={{marginTop: 30}}>
@@ -332,15 +344,28 @@ function Homepage({ navigation }){
                     <Text style={{color:'grey', fontFamily: 'Montserrat_500Medium', fontSize:16, textDecorationLine: 'underline'}}>See All</Text>
                     </SeeAll>
                 </View>
-                    <Carousel 
-                        data={mapTrendAnime()}
-                        renderItem={renderItem.bind(this)}
-                        sliderWidth={400}
-                        itemWidth={150}
-                        useScrollView={true}
-                        loop={true}
-                        loopClonesPerSide={4}
-                    />
+                    {
+                        trendyAnime !== null && trendyAnime.length > 0? (
+                            <Carousel 
+                                data={mapTrendAnime()}
+                                renderItem={renderItem.bind(this)}
+                                sliderWidth={400}
+                                itemWidth={150}
+                                useScrollView={true}
+                                loop={true}
+                                loopClonesPerSide={4}
+                                activeSlideAlignment="start"
+                            />
+                        ) : (
+                            <>
+                                <View style={{flexDirection: 'row', width: '100%', justifyContent: 'space-between'}}>
+                                    <Skeleton animation="pulse" style={{opacity: 0.2, width: '30%', height: 170, borderRadius: 10}}/>
+                                    <Skeleton animation="pulse" style={{opacity: 0.2, width: '30%', height: 170, borderRadius: 10}}/>
+                                    <Skeleton animation="pulse" style={{opacity: 0.2, width: '30%', height: 170, borderRadius: 10}}/>
+                                </View>
+                            </>
+                        )
+                    }
                 </View>
 
                 <View style={{marginTop: 30, marginBottom: 100}}>
@@ -357,16 +382,28 @@ function Homepage({ navigation }){
                         <Text style={{color:'grey', fontFamily: 'Montserrat_500Medium', fontSize:16, textDecorationLine: 'underline'}}>See All</Text>
                         </SeeAll>
                     </View>
-
-                    <Carousel 
-                        data={mapTvShow()}
-                        renderItem={renderItem.bind(this)}
-                        sliderWidth={400}
-                        itemWidth={150}
-                        useScrollView={true}
-                        loop={true}
-                        loopClonesPerSide={4}
-                    />
+                    {
+                        tvShow.length > 0 && tvShow !== null ? (
+                            <Carousel 
+                                data={mapTvShow()}
+                                renderItem={renderItem.bind(this)}
+                                sliderWidth={400}
+                                itemWidth={150}
+                                useScrollView={true}
+                                loop={true}
+                                loopClonesPerSide={4}
+                                activeSlideAlignment="start"
+                            />
+                        ) : (
+                            <>
+                                <View style={{flexDirection: 'row', width: '100%', justifyContent: 'space-between'}}>
+                                    <Skeleton animation="pulse" style={{opacity: 0.2, width: '30%', height: 170, borderRadius: 10}}/>
+                                    <Skeleton animation="pulse" style={{opacity: 0.2, width: '30%', height: 170, borderRadius: 10}}/>
+                                    <Skeleton animation="pulse" style={{opacity: 0.2, width: '30%', height: 170, borderRadius: 10}}/>
+                                </View>
+                            </>
+                        )
+                    }
                 </View>
             </ScrollView>                
         </Container>

@@ -35,7 +35,7 @@ function GoogleTrendys( navigation ){
 
 
     useEffect(()=>{
-        axios.get('https://keikoapp.herokuapp.com/billboard-top-100').then((response) => {setSongs(response.data)}).catch((err) => {
+        axios.get('https://trendy-app-api.onrender.com/billboard-top-100').then((response) => {setSongs(response.data)}).catch((err) => {
             console.error("ops! ocorreu um erro" + err);
         });
     },[])

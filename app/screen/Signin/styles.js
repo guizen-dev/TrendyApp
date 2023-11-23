@@ -45,7 +45,7 @@ export const Input = styled.TextInput`
     padding: 15px 20px; 
     color: #fff;
     font-size: 15px;
-    border-radius: 28px;
+    border-radius: 18px;
     width: 100%;
     font-weight: 700;
 
@@ -57,7 +57,7 @@ export const Image = styled.Image`
 
 export const ButtonSubmit = styled.TouchableOpacity`
     backgroundColor: #6541F5;
-    border-radius: 28px;
+    border-radius: 18px;
     padding: 15px 20px;
     width: 280px;
     align-items: center;

@@ -513,7 +513,7 @@ function TwitterTrendys( navigation ){
     
     const handleSearch = (selectedCountry) => {
         axios
-        .get(`https://keikoapp.herokuapp.com/twitter?country=${selectedCountry}`)
+        .get(`https://trendy-app-api.onrender.com/twitter?country=${selectedCountry}`)
         .then((response) => {
             setResults(response.data.tweet);
         })

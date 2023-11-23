@@ -13,14 +13,23 @@ export const KeyboardView = styled.KeyboardAvoidingView`
 
 export const Container = styled.View`
     flex: 1;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     padding-bottom: 10px;
     width: 100%;
-    padding: 10px;
-    margin: 40px;
+    padding: 30px;
+    margin: 45px;
     
 `
+
+export const StartView = styled.View`
+    margin-right: auto; 
+    margin-left: 0;
+    widht: 100%;
+
+`
+
+
 
 export const View = styled.View`
 `
@@ -37,8 +46,15 @@ export const SubTitle = styled.Text`
     font-size: 16px;
     opacity: 0.4;
     margin-bottom: 30px;
-    text-align: center;
+    text-align: left;
 `   
+export const ExampleText = styled.Text`
+    color: #FFF;
+    font-size: 16px;
+    opacity: 0.4;
+    margin-bottom: 30px;
+    text-align: left;
+`
 
 export const Text = styled.Text`
     color: white;
@@ -56,18 +72,19 @@ export const Input = styled.TextInput`
     background-color: #191C32;
     color: #fff;
     font-size: 15px;
-    border-radius: 28px;
-    width: 90%;
+    border-radius: 18px;Age
+Hobbies
+    width: 100%;
     font-weight: 700;
 `
-export const RegisterSubmit = styled.TouchableOpacity`
-backgroundColor: #0D0D1F;
-border-radius: 28px;
-padding: 15px 20px;
-width: 300px;
-align-items: center;
-margin-bottom: 20px
 
+export const RegisterSubmit = styled.TouchableOpacity`
+    backgroundColor: #0D0D1F;
+    border-radius: 18px;
+    padding: 15px 20px;
+    width: 300px;
+    align-items: center;
+    margin-bottom: 20px
 `
 export const LoginSubmit = styled.TouchableOpacity`
     

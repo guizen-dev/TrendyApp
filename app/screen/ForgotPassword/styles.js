@@ -9,12 +9,19 @@ export const KeyboardView = styled.KeyboardAvoidingView`
 `
 export const Container = styled.View`
     flex: 1;
-    justify-content: center;
     align-items: center;
+    margin-bottom: auto; 
+    margin-top: 0;
     padding-bottom: 10px;
     width: 90%;
     padding: 20px;
     margin: 30px;
+`
+export const StartView = styled.View`
+    margin-right: auto; 
+    margin-left: 3;
+    widht: 100%;
+
 `
 
 export const KeyText = styled.Text`
@@ -26,23 +33,30 @@ export const Title = styled.Text`
     color: #FFF;
     font-size: 36px;
     font-weight: 700;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 `  
 
 export const SubTitle = styled.Text`
     color: #FFF;
-    font-size: 20px;
+    font-size: 18px;
     opacity: 0.4;
     margin-bottom: 30px;
-    text-align: center;
 `   
+
+export const SendKey = styled.Text`
+    color: #FFF;
+    font-size: 14px;
+    opacity: 0.4;
+    margin-bottom: 30px;
+    text-decoration: underline;
+` 
+
 export const Input = styled.TextInput`
-    margin-bottom: 20px;
     background-color: #191C32;
     padding: 15px 20px; 
     color: #fff;
     font-size: 15px;
-    border-radius: 28px;
+    border-radius: 18px;
     width: 350px;
     font-weight: 700;
 `
@@ -58,9 +72,9 @@ export const ButtonSubmit = styled.TouchableOpacity`
 
 export const KeySubmit = styled.TouchableOpacity`
     backgroundColor: #0D0D1F;
-    border-radius: 28px;
+    border-radius: 18px;
     padding: 10px 20px;
-    width: 300px;
+    width: 200px;
     height: 54px;
     align-items: center; 
     margin-bottom: -500px

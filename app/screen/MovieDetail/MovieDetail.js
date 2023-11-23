@@ -21,7 +21,7 @@ import { View,
     Title2,
     SubTitle2
  }  from './styles'
- import { StyleSheet} from 'react-native';
+ import { StyleSheet, ActivityIndicator} from 'react-native';
  import Icon from 'react-native-vector-icons/FontAwesome';
  import Feather from 'react-native-vector-icons/Feather'
   import { useFonts } from 'expo-font';
@@ -47,7 +47,7 @@ const image = '';
 function MovieDetail ({ navigation }){
 
     const api = axios.create({
-        baseURL: "https://keikoapp.herokuapp.com",
+        baseURL: "https://trendy-app-api.onrender.com/",
       });
 
     const [isLiked, setIsLiked] = React.useState(false)
@@ -239,7 +239,7 @@ function MovieDetail ({ navigation }){
             }
           }
           catch(err){
-
+            console.log(err)
           }
         })
       ) : null
@@ -258,7 +258,7 @@ function MovieDetail ({ navigation }){
     }
 
     return(
-        <Container style={{flex:1,backgroundColor:'#16293E'}}>
+        <Container style={{backgroundColor:'#16293E', flex:1}}>
             <ScrollView>
                 <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 10, marginLeft: 50, position: 'relative'}}>
                     <Feather onPress={() => navigation.navigate('HubScreen')} name="arrow-left" size={30} color="white" />
@@ -278,9 +278,10 @@ function MovieDetail ({ navigation }){
 
                 <Image 
                         source={{uri:route.image}}
-                        style={{width: '100%', height: 563, borderRadius: 30}}
+                        style={{width: '100%', height: 200, borderRadius: 30}}
                     />
-                <View style={{margin: 30}}>
+
+                <View style={{flex: 1, margin: 30}}>
                     <Title>{route.name}</Title>
 
                     {
@@ -299,7 +300,7 @@ function MovieDetail ({ navigation }){
                       ) : null
                     }
 
-                    <View style={{flexDirection: 'row', margin: 15, justifyContent: 'center'}}>
+                    <View style={{flex: 1, width: '100%', flexDirection: 'row', margin: 15, justifyContent: 'center', flexWrap: 'wrap'}}>
 
                         {movie.genres ? movie.genres.map((item) => (
                           <View style={{backgroundColor: '#36394A', borderRadius: 12, justifyContent: 'center', alignItems:'center', width: 120, height: 30, padding: 2, margin: 4}}>
@@ -378,7 +379,7 @@ function MovieDetail ({ navigation }){
                         }
                     </View>
 
-                    <View style={{marginTop: -20}}>
+                    <View style={{marginTop: 20}}>
                     
                     {
                       actors.length !== 0 ? (

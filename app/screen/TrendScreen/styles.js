@@ -130,3 +130,8 @@ export const Linha = styled.View`
 border-bottom: 5px solid white;
 
 ` 
+
+export const DivEstilizada = styled.View`
+
+
+`
