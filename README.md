@@ -1,4 +1,4 @@
-![Moviedetail](https://github.com/guizen-dev/TrendyApp/assets/94479811/b8d9dd6e-105b-4969-8a0c-42b6b9cb5360)<p align="center">
+<p align="center">
   <img  src="https://user-images.githubusercontent.com/51789882/206223105-12a6b6c0-aee6-4bdb-ae3f-bbfe6afbc1c1.png" align="center">
 </p>
 <h1 align="center">TrendyAPP</h1>
